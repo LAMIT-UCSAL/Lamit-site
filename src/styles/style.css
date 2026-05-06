@@ -668,7 +668,7 @@ h2 {
 
 .director-banner {
   display: grid;
-  grid-template-columns: minmax(320px, 1.05fr) minmax(360px, 0.95fr);
+  grid-template-columns: minmax(250px, 0.8fr) minmax(360px, 1.2fr);
   min-height: clamp(360px, 42vw, 560px);
   width: 100%;
   background: rgba(0, 0, 0, 0.2);
@@ -691,6 +691,8 @@ h2 {
 }
 
 .director-banner__media {
+  display: flex;
+  padding-inline: 1rem;
   position: relative;
   min-height: clamp(360px, 42vw, 560px);
   background: transparent;
@@ -705,7 +707,7 @@ h2 {
   display: none;
 }
 
-.director-banner__media img {
+.director-banner__media > img {
   display: block;
   width: 100%;
   height: 100%;
@@ -713,7 +715,7 @@ h2 {
   object-position: left center;
 }
 
-.director-banner--reverse .director-banner__media img {
+.director-banner--reverse .director-banner__media > img {
   object-position: right center;
 }
 
