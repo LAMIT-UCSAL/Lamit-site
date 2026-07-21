@@ -49,6 +49,15 @@ const directors = [
     image: '/media/gab-maia.png',
     reverse: false,
   },
+  {
+    index: '06',
+    label: 'Diretoria de Eventos',
+    name: 'Kézia Carneiro',
+    description: 'Lidera a diretoria de eventos, organizando e promovendo as atividades da liga.',
+    experience: 'Análise e Desenvolvimento de Sistemas, Desenvolvedor Full Stack.',
+    image: '/media/kezia.png',
+    reverse: true,
+  },
 ]
 
 function Diretoria() {
