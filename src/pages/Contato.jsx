@@ -66,7 +66,7 @@ function Contato() {
           <textarea id="message" name="message" value={formData.message} onChange={handleChange}></textarea>
 
           <div className="sendContainer">
-            <button type="submit" id="sendBtn">SEND</button>
+            <button type="submit" id="sendBtn">ENVIAR</button>
             <input type="hidden" name="_subject" value="Nova Mensagem!" />
             <input type="text" name="_honey" style={{ display: 'none' }} />
             <input type="hidden" name="_captcha" value="false" />
@@ -75,11 +75,13 @@ function Contato() {
         </form>
 
         <div className="contact_msg">
-          <h2>Ou entre em contato pelos meios abaixo</h2>
+          <h3>
+            Ou entre em contato diretamente
+            <br />
+            pelo nosso email
+          </h3>
           <div id="contacts">
-            <p>Presidente - LAMIT - Fernanda Velame - <button onClick={() => copiarTexto('fernanda.velame@ucsal.edu.br')}>fernanda.velame@ucsal.edu.br</button></p>
-            <p>Vice-Presidente - LAMIT - Guilherme Mota - <button onClick={() => copiarTexto('guilhermemota.silva@ucsal.edu.br')}>guilhermemota.silva@ucsal.edu.br</button></p>
-            <p>Professor Orientador - LAMIT - Luan Galvão <button onClick={() => copiarTexto('luan.galvao@pro.ucsal.br')}>luan.galvao@pro.ucsal.br</button></p>
+            <p><button onClick={() => copiarTexto('contato.lamit@gmail.com')}>contato.lamit@gmail.com</button></p>
           </div>
         </div>
       </div>

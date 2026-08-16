@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T00:00:00Z",
+  "title": "Design System: LAMIT",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Cobalto Profundo", "canonical": "#0A3383", "tonalRamp": ["#04091a", "#081536", "#0a2358", "#0a3383", "#2e5aa8", "#6a8fc9", "#a8c0e2", "#e5edf8"] },
+      "secondary": { "role": "secondary", "displayName": "Âmbar Queimado", "canonical": "#C17402", "tonalRamp": ["#1f1300", "#3c2400", "#603900", "#8a5300", "#c17402", "#d99a3f", "#e9c07f", "#f7e3bf"] },
+      "tertiary": { "role": "tertiary", "displayName": "Ouro Institucional", "canonical": "#d7c06b", "tonalRamp": ["#2e2810", "#4f451e", "#75652f", "#a08c48", "#d7c06b", "#e2d08f", "#ecdfb3", "#f7efd9"] },
+      "neutral-black": { "role": "neutral", "displayName": "Preto Absoluto", "canonical": "#000000", "tonalRamp": ["#000000", "#0d0d0d", "#1a1a1a", "#333333", "#4d4d4d", "#808080", "#b3b3b3", "#e6e6e6"] },
+      "neutral-white": { "role": "neutral", "displayName": "Branco", "canonical": "#ffffff", "tonalRamp": ["#000000", "#0d0d0d", "#1a1a1a", "#333333", "#4d4d4d", "#808080", "#b3b3b3", "#ffffff"] },
+      "signal-blue": { "role": "accent", "displayName": "Sinal Azul (CTA default)", "canonical": "#164194", "tonalRamp": ["#050d1f", "#0b1a3e", "#12295f", "#164194", "#3f66ad", "#7692c5", "#aebfdc", "#e3e9f4"] },
+      "signal-orange": { "role": "accent", "displayName": "Sinal Laranja (destaque auxiliar)", "canonical": "#e84b13", "tonalRamp": ["#2b0a02", "#4d1304", "#742007", "#a8300b", "#e84b13", "#f07a4f", "#f6a888", "#fbd4c3"] },
+      "gold-bright": { "role": "accent", "displayName": "Ouro Institucional — Bright", "canonical": "#ffbb00", "tonalRamp": ["#332600", "#5c4400", "#8a6600", "#bf8c00", "#ffbb00", "#ffcc4d", "#ffdd8c", "#feecc2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The single largest headline per page (e.g. the Diretoria page title). Used once, at most." },
+      "headline": { "displayName": "Headline", "purpose": "Section/entity names, such as each director's name in the Diretoria showcase." },
+      "title": { "displayName": "Title", "purpose": "Page-level h1 on pages without a Display moment (Sobre, Contato)." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy: mission text, director descriptions. Capped near 480px measure." },
+      "label": { "displayName": "Label", "purpose": "Nav links, kickers, index numbers, role labels — always uppercase, wide-tracked." }
+    },
+    "motion": [
+      { "name": "cta-hover", "value": "all 0.5s ease-in-out", "purpose": "Primary CTA button color flip from Signal Blue to Signal Orange on hover." },
+      { "name": "secondary-button-hover", "value": "0.4s ease", "purpose": "Contact form submit button inverting from black-on-white to white-on-black." },
+      { "name": "tilted-card-spring", "value": "spring(damping: 30, stiffness: 100, mass: 2)", "purpose": "TiltedCard's 3D rotation and hover-scale physics (Framer Motion spring, not CSS easing)." },
+      { "name": "tilted-card-caption-spring", "value": "spring(damping: 30, stiffness: 250, mass: 1)", "purpose": "The cursor-following caption chip's rotational lag on the tilted photo cards." },
+      { "name": "grainient-warp", "value": "shader uniform (timeSpeed 0.25, warpSpeed 2, warpAmplitude 50, rotationAmount 500)", "purpose": "Continuous WebGL warp/rotation driving the animated gradient background on interior pages." },
+      { "name": "nav-link-hover", "value": "transform 0.3s ease-in-out", "purpose": "Signal Orange underline growing in from center (scaleX 0 to 1) beneath a nav link on hover." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "920px" },
+      { "name": "mobile", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width CTA ('Acesse Nossos Links') on Home; white top/bottom border only, aggressive color flip on hover.",
+      "html": "<button class=\"ds-btn-primary\">Acesse Nossos Links</button>",
+      "css": ".ds-btn-primary { width: 100%; height: 65px; background: #164194; color: #ffffff; font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-size: 1rem; font-weight: 400; letter-spacing: 0; border: 0; border-top: 2px solid #ffffff; border-bottom: 2px solid #ffffff; border-radius: 0; cursor: pointer; transition: all 0.5s ease-in-out; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: #e84b13; color: #ffffff; font-weight: 900; } .ds-btn-primary:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Contact form submit button; solid black with a thin white border, inverts on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Send</button>",
+      "css": ".ds-btn-secondary { width: 50px; height: 40px; background: #000000; color: #ffffff; font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-weight: 700; border: 1px solid #ffffff; border-radius: 0; cursor: pointer; transition: 0.4s ease; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: #ffffff; color: #000000; border-color: #000000; } .ds-btn-secondary:focus-visible { outline: 2px solid #164194; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Transparent field with a 2px white border; form values render in natural case (uppercase transform is turned off on inputs).",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Nome\" />",
+      "css": ".ds-input { width: 100%; background: transparent; color: #ffffff; font-family: 'BB Mono Semi Regular', monospace; text-transform: none; font-size: 0.8rem; padding: 1vh; border: 2px solid #ffffff; border-radius: 0; } .ds-input:focus-visible { outline: 2px solid #164194; outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed, top-center nav link; the current page is simply omitted from the list rather than styled active. A Signal Orange underline grows in on hover.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Sobre</a>",
+      "css": ".ds-nav-link { display: block; position: relative; margin-inline: 2rem; color: #ffffff; text-align: center; font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-size: 1.2rem; font-weight: 700; line-height: 1.5rem; text-decoration: none; } .ds-nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: #e84b13; transform: scaleX(0); transform-origin: center; transition: transform 0.3s ease-in-out; } .ds-nav-link:hover::after, .ds-nav-link:focus-visible::after { transform: scaleX(1); }"
+    },
+    {
+      "name": "Tilted Card Caption Chip",
+      "kind": "chip",
+      "refersTo": "tilted-card-caption",
+      "description": "Cursor-following tooltip chip on the director photo cards, shown on hover with the person's role/experience text.",
+      "html": "<span class=\"ds-caption-chip\">Product Analyst @ Ford</span>",
+      "css": ".ds-caption-chip { display: inline-block; background: #0A3383; color: #ffffff; font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 10px; }"
+    },
+    {
+      "name": "Director Index/Label",
+      "kind": "custom",
+      "refersTo": "director-banner",
+      "description": "The index number + role label pairing that opens every row of the Diretoria showcase, in Ouro Institucional.",
+      "html": "<div class=\"ds-director-meta\"><span class=\"ds-director-index\">01</span><p class=\"ds-director-role\">Presidência</p></div>",
+      "css": ".ds-director-meta { display: flex; flex-direction: column; gap: 4px; } .ds-director-index { color: rgba(215, 192, 107, 0.9); font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.36rem; } .ds-director-role { margin: 0; color: rgba(255, 255, 255, 0.72); font-family: 'BB Mono Semi Regular', monospace; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.18rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Hackathon Broadcast",
+    "overview": "LAMIT's site reads like a late-night competitive broadcast feed rather than an institutional brochure: a wall of looping video, a warping WebGL gradient behind every interior page, and type that stays locked in uppercase mono-terminal characters at all times. The voice is precise and institutional first — this is a formal academic league, not a nightclub — but the surface it's delivered on borrows its intensity from live competition coverage: black canvas, hard-edged chrome, and a single animated gradient doing the work that photography or illustration would do elsewhere. Everything is deliberately flat. There is no drop shadow anywhere in the system — depth comes from the animated gradient's own warp and grain, from opacity masks fading video and photo edges into the black canvas, and from the one physical gesture the system allows itself: a spring-physics 3D tilt on the director photo cards. The palette stays narrow (deep cobalt, burnt amber, institutional gold, plus a CTA-anchor blue and an auxiliary highlight orange) so that the gradient and the tilt effect remain the most expressive things on screen.",
+    "keyCharacteristics": [
+      "Absolute black canvas (#000000) with white type and white 1-2px line borders — no gray midtones as fills.",
+      "Single custom mono typeface, forced uppercase everywhere, carrying every role from display to label.",
+      "Zero shadows, enforced globally; depth comes from gradient warp, grain, and mask fades instead.",
+      "One animated WebGL gradient (cobalt → amber → cobalt, with grain and rotation) as the atmospheric layer behind every interior page.",
+      "Fixed, persistent chrome (logo, nav, footer) that never scrolls away, reinforcing the \"broadcast overlay\" read."
+    ],
+    "rules": [
+      { "name": "The Signal Accent Rule", "body": "Signal Blue (#164194) is the primary CTA's own resting color, deliberately distinct from the gradient's cobalt/amber so the one action that matters most never blends into the atmosphere. Signal Orange (#e84b13) is the system's auxiliary highlight — it marks interactive emphasis wherever it's needed (the CTA's hover fill, the nav link hover underline, and future interactive callouts), rather than being locked to a single element.", "section": "colors" },
+      { "name": "The All-Caps Rule", "body": "A global text-transform: uppercase is forced on every element. Author copy in whatever case reads best in source; the render is uppercase unconditionally, so casing is never a design lever here.", "section": "typography" },
+      { "name": "The Flat-By-Force Rule", "body": "Shadows are not a stylistic choice here — they're structurally impossible (box-shadow: none !important is global). Never attempt to add box-shadow to a new component; express emphasis or depth through the gradient, a mask, or the tilt interaction instead.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do treat the animated Grainient (Cobalto Profundo → Âmbar Queimado, with grain and warp) as the default atmospheric background for any new interior page.",
+      "Do use border-only outlines (1-2px solid white) to delimit new interactive elements instead of a filled background or a shadow.",
+      "Do apply a top/bottom (or edge-appropriate) gradient mask to any new full-bleed video or photo element so it blends into the black canvas rather than cutting hard.",
+      "Do author copy in natural case in source; the global uppercase transform handles the rendering."
+    ],
+    "donts": [
+      "Don't add box-shadow to any component — it's globally overridden to none and will not render even if written.",
+      "Don't introduce a second typeface. BB Mono Semi Regular is the only face in the system, across every role.",
+      "Don't add corner radius to buttons, inputs, or nav/footer chrome — 15px/10px curvature is reserved exclusively for the TiltedCard photo family.",
+      "Don't invent new accent hues outside Cobalto Profundo, Âmbar Queimado, Ouro Institucional, Signal Blue, and Signal Orange. Signal Orange is the one color free to travel to new interactive-emphasis uses; the other four stay put."
+    ]
+  }
+}

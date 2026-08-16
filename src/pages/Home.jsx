@@ -1,5 +1,9 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import AboutSection from '../components/home/AboutSection'
+import HackathonCarousel from '../components/home/HackathonCarousel'
+import EventsSection from '../components/home/EventsSection'
+import CommunityCTA from '../components/home/CommunityCTA'
 
 function Home() {
   return (
@@ -9,32 +13,33 @@ function Home() {
 
         <div className="banner-videos">
           <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/onboarding.mp4" type="video/mp4" />
+            <source src="/media/videos/onboarding.mp4" type="video/mp4" />
           </video>
           <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/produtos-lamit.mp4" type="video/mp4" />
+            <source src="/media/videos/gdg-salvador.MOV" type="video/mp4" />
           </video>
           <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/lamit dic.mp4" type="video/mp4" />
+            <source src="/media/videos/lamit-redbull.mp4" type="video/mp4" />
           </video>
           <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/backstage.mp4" type="video/mp4" />
+            <source src="/media/videos/podcast.MOV" type="video/mp4" />
           </video>
         </div>
 
         <Footer />
       </div>
 
-      <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer">
-        <button id="liveButton">Acesse Nossos Links</button>
+      <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer" className="btn-primary">
+        Acesse Nossos Links
       </a>
 
-      <section className="photo_gallery">
-        <img src="/media/Banner Sympla.jpg" alt="Banner Sympla" />
-        <img src="/media/comunidade.jpeg" alt="Comunidade" />
-        <img src="/media/hackathons.png" alt="Hackathons" />
-        <img src="/media/mesa-diretora.jpeg" alt="Mesa Diretora" />
-      </section>
+      <div className="home-narrative">
+        <div className="home-narrative__bg" aria-hidden="true" />
+        <AboutSection />
+        <HackathonCarousel />
+        <EventsSection />
+        <CommunityCTA />
+      </div>
     </>
   )
 }

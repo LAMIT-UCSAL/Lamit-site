@@ -38,9 +38,8 @@
 }
 
 .tilted-card-img {
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 90%), linear-gradient(to top, black 70%, transparent 110%);
-  mask-composite: intersect;
-  mask-image: linear-gradient(to bottom, black 70%, transparent 90%), linear-gradient(to top, black 70%, transparent 110%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 90%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 90%);
   position: absolute;
   top: 0;
   left: 0;

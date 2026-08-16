@@ -1,0 +1,497 @@
+/* ==========================================================================
+   Home — scrolling narrative (Sobre / Hackathons / Eventos / CTA)
+   Sections after the hero+CTA. Wrapper carries a static solid blue background
+   (#081536, a darker step on the Cobalto Profundo ramp — chosen over the
+   canonical #0A3383 because it read as too light next to the site's
+   otherwise all-black chrome; no animation, a deliberate departure from the
+   animated Grainient used on the interior pages); the hackathon band
+   overrides it with a solid black mask-faded strip.
+   ========================================================================== */
+
+.home-narrative {
+  position: relative;
+}
+
+.home-narrative__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #081536;
+  pointer-events: none;
+}
+
+/* ---- Sobre nós ---------------------------------------------------------- */
+
+.home-about {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(96px, 12vw, 160px) clamp(24px, 6vw, 96px) clamp(64px, 8vw, 120px);
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(320px, 1.3fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.home-about__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.home-about__kicker {
+  margin: 0 0 12px;
+  color: #d7c06b;
+  font-size: 0.9rem;
+  letter-spacing: 0.28rem;
+}
+
+.home-about__title {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.home-about__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 28px;
+}
+
+.home-about__body {
+  margin: 0;
+  max-width: 480px;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgb(255, 255, 255);
+  user-select: text;
+}
+
+.home-about__pillars {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-about__pillar {
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 12px;
+}
+
+.home-about__pillar-label {
+  color: #d7c06b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+}
+
+.home-about__pillar-text {
+  margin: 6px 0 0;
+  max-width: 420px;
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255);
+  user-select: text;
+}
+
+/* ---- Hackathons carousel ------------------------------------------------- */
+
+.home-carousel {
+  position: relative;
+  z-index: 1;
+  background: #000000;
+  padding: clamp(72px, 9vw, 120px) 0;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.home-carousel__header {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 96px);
+  text-align: center;
+}
+
+.home-carousel__kicker {
+  margin: 0 0 10px;
+  color: #d7c06b;
+  font-size: 0.9rem;
+  letter-spacing: 0.28rem;
+}
+
+.home-carousel__title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(1rem, 6vw, 3rem);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.home-carousel__viewport {
+  margin-top: 48px;
+  overflow: hidden;
+  padding-left: clamp(24px, 8vw, 120px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.home-carousel__track {
+  --card-width: clamp(240px, 22vw, 380px);
+  --card-gap: 24px;
+  display: flex;
+  gap: var(--card-gap);
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translateX(calc(-1 * var(--active-index, 0) * (var(--card-width) + var(--card-gap))));
+  transition: transform 0.5s ease-in-out;
+}
+
+.home-carousel__track:active {
+  cursor: grabbing;
+}
+
+.home-carousel__track:focus-visible {
+  outline: 2px solid #e84b13;
+  outline-offset: 4px;
+}
+
+.home-carousel__slide {
+  flex: 0 0 var(--card-width, clamp(240px, 22vw, 380px));
+  aspect-ratio: 1;
+  opacity: 0.55;
+}
+
+.home-carousel__slide picture,
+.home-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-carousel__controls {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 40px;
+  font-family: BB Mono Semi Regular;
+  font-weight: bold;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.home-carousel__arrow:hover:not(:disabled),
+.home-carousel__arrow:focus-visible:not(:disabled) {
+  background: rgba(232, 75, 19, 0.22);
+  border-color: #e84b13;
+  color: #ffffff;
+}
+
+.home-carousel__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.home-carousel__scrubber {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-carousel__tick {
+  width: 14px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.home-carousel__tick.is-active {
+  background: #e84b13;
+}
+
+.home-carousel__counter {
+  min-width: 64px;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.15rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-carousel__track {
+    scroll-behavior: smooth;
+  }
+
+  .home-carousel__slide {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+
+  .home-carousel__slide.is-active {
+    transform: scale(1.02);
+  }
+
+  .home-carousel__tick {
+    transition: background 0.3s ease-in-out;
+  }
+}
+
+.home-carousel__slide.is-active {
+  opacity: 1;
+}
+
+/* ---- Nossos eventos ------------------------------------------------------ */
+
+.home-events {
+  position: relative;
+  z-index: 1;
+  padding: clamp(48px, 6vw, 80px) 0 clamp(80px, 10vw, 140px);
+}
+
+.home-events__header {
+  max-width: 760px;
+  margin: 0 auto 64px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.home-events__kicker {
+  margin: 0 0 10px;
+  color: #d7c06b;
+  font-size: 0.9rem;
+  letter-spacing: 0.28rem;
+}
+
+.home-events__title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(1rem, 6vw, 3rem);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.home-events__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-event {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+  min-height: clamp(320px, 36vw, 480px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-events__list .home-event:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-event--reverse .home-event__media {
+  order: 2;
+}
+
+.home-event--reverse .home-event__content {
+  order: 1;
+}
+
+.home-event__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-event__media picture,
+.home-event__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-event__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px clamp(28px, 5vw, 72px);
+  text-align: left;
+}
+
+.home-event__date {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-size: 0.85rem;
+  letter-spacing: 0.18rem;
+}
+
+h3.home-event__title {
+  margin: 0;
+  width: auto;
+  text-align: left;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.05;
+}
+
+.home-event__role {
+  margin: 0;
+  color: #d7c06b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14rem;
+}
+
+.home-event__description {
+  margin: 0;
+  max-width: 480px;
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgb(255, 255, 255);
+  user-select: text;
+}
+
+/* ---- Closing CTA ---------------------------------------------------------- */
+
+.home-cta {
+  position: relative;
+  z-index: 1;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 160px;
+  text-align: center;
+}
+
+.home-cta__content {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-cta__kicker {
+  margin: 0;
+  color: #d7c06b;
+  font-size: 0.9rem;
+  letter-spacing: 0.28rem;
+}
+
+h2.home-cta__title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.home-cta__body {
+  margin: 0;
+  max-width: 480px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  user-select: text;
+}
+
+.home-cta__button {
+  margin-top: 12px;
+  width: auto;
+  min-width: 220px;
+  padding: 0 40px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+}
+
+.home-cta__button:hover,
+.home-cta__button:focus-visible {
+  background: rgba(232, 75, 19, 0.2);
+  border-color: #e84b13;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+/* ---- Responsive ------------------------------------------------------------ */
+
+@media (max-width: 920px), (max-height: 720px) {
+  .home-about {
+    grid-template-columns: 1fr;
+    padding-top: 80px;
+  }
+
+  .home-carousel__track {
+    --card-width: clamp(200px, 68vw, 320px);
+  }
+}
+
+@media (max-width: 760px) {
+  .home-event,
+  .home-event--reverse {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .home-event__media,
+  .home-event--reverse .home-event__media,
+  .home-event--reverse .home-event__content {
+    order: initial;
+  }
+
+  .home-event__media {
+    min-height: 240px;
+  }
+
+  .home-event__content {
+    padding: 28px 20px 36px;
+  }
+
+  .home-cta {
+    min-height: 50vh;
+    padding: 64px 20px 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 11 ticks + 2 arrows + counter add up to ~440px — wider than most phones.
+     Drop the scrubber and lean on the numeric counter alone as the position
+     indicator; arrows + counter comfortably fit any phone width. */
+  .home-carousel__scrubber {
+    display: none;
+  }
+
+  .home-carousel__controls {
+    gap: 16px;
+  }
+}
