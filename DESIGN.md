@@ -45,6 +45,10 @@ rounded:
   none: "0px"
   chip: "10px"
   media: "15px"
+  glass-sm: "8px"
+  glass-md: "10px"
+  glass-lg: "14px"
+  glass-xl: "16px"
 components:
   button-primary:
     backgroundColor: "{colors.signal-blue}"
@@ -83,6 +87,29 @@ components:
     textColor: "{colors.neutral-white}"
     rounded: "{rounded.chip}"
     padding: "4px 10px"
+  button-cta-glass:
+    backgroundColor: "rgba(255,255,255,0.08)"
+    textColor: "{colors.neutral-white}"
+    typography: "{typography.label}"
+    rounded: "{rounded.glass-lg}"
+    height: "56px"
+  button-cta-glass-hover:
+    backgroundColor: "rgba(232,75,19,0.2)"
+  button-arrow-glass:
+    backgroundColor: "rgba(255,255,255,0.08)"
+    textColor: "{colors.neutral-white}"
+    typography: "{typography.label}"
+    rounded: "{rounded.glass-md}"
+    width: "50px"
+    height: "40px"
+  button-arrow-glass-hover:
+    backgroundColor: "rgba(232,75,19,0.22)"
+  input-field-glass:
+    backgroundColor: "rgba(255,255,255,0.06)"
+    textColor: "{colors.neutral-white}"
+    typography: "{typography.body}"
+    rounded: "{rounded.glass-sm}"
+    padding: "1.2vh 12px"
 ---
 
 # Design System: LAMIT
@@ -121,7 +148,7 @@ The palette is intentionally narrow: two brand hues carried by the animated grad
 - **Branco** (`#ffffff`): all body text, borders, and the hover fill of secondary buttons.
 
 ### Named Rules
-**The Signal Accent Rule.** Signal Blue (`#164194`) is the primary CTA's own resting color, deliberately distinct from the gradient's cobalt/amber so the one action that matters most never blends into the atmosphere. Signal Orange (`#e84b13`) is the system's auxiliary highlight — it marks interactive emphasis wherever it's needed (the CTA's hover fill, the nav link hover underline, and future interactive callouts), rather than being locked to a single element.
+**The Signal Accent Rule.** The site now runs two CTAs with two deliberately different registers, not one "most important action" — a decision made explicit here rather than left ambiguous. Signal Blue (`#164194`) is the **opening gesture**: the hero CTA ("Acesse Nossos Links"), solid and full-bleed immediately after the video wall, hits with the same directness as the broadcast intro it follows — no subtlety, no translucency. The Glass Exception treatment, tinting to Signal Orange (`#e84b13`) on hover, is the **closing gesture**: the "Entrar na comunidade" CTA, arriving after the mission, competition proof, and hosting proof have all been shown, is an invitation rather than a command — a softer, translucent surface suits asking someone to join more than repeating the opening's hard color-flip would. Signal Blue owns the loud opening beat; the Glass + Signal Orange pairing owns the warm closing beat. Signal Orange also remains the system's general auxiliary highlight elsewhere (the nav link hover underline, and future interactive callouts) — it is not exclusive to the closing CTA, only Signal Blue's opening-beat role is exclusive.
 
 ## Typography
 
@@ -155,21 +182,26 @@ There is no shadow system — `box-shadow: none !important` is forced globally, 
 ### Named Rules
 **The Flat-By-Force Rule.** Shadows are not a stylistic choice here — they're structurally impossible. Never attempt to add `box-shadow` to a new component; express emphasis or depth through the gradient, a mask, or the tilt interaction instead.
 
+**The Glass Exception.** A small, explicitly scoped set of interactive controls breaks from Flat-By-Force on purpose, by direct request: the closing "Entrar na comunidade" CTA, the entire contact form panel (`#form`) and its input/textarea fields, the contact form's send button, and the hackathon-carousel's prev/next arrows. Each uses a translucent white fill (6-8% alpha at rest, tinting to Signal Orange at 20-22% alpha on hover/focus), `backdrop-filter: blur()` (10-18px depending on the component's size and prominence), and a soft white border (18-25% alpha) in place of the solid-fill/hard-line treatment used everywhere else. `box-shadow` still does not apply — the glass reads through blur and translucency alone, never a cast shadow. This is a deliberate, requested departure, not drift: it stays confined to this component family and does not extend to the hero CTA, TiltedCard, DirectorBanner, or any other page-level surface.
+
 ## Shapes
 
-Square-edged by default: buttons, inputs, nav chrome, and the footer all sit at 0 radius, with a 1-2px solid white line as the only boundary treatment — never a filled background or a shadow to delimit an interactive element. Curvature is reserved for exactly one family: the photographic TiltedCards, whose image gets a 15px radius (paired with a top/bottom gradient mask) and whose cursor-following caption chip gets a 10px radius. Full-bleed breakout is a recurring silhouette move — both the Home video banner and the Diretoria showcase escape their container to span the entire viewport width.
+Square-edged by default: buttons, inputs, nav chrome, and the footer all sit at 0 radius, with a 1-2px solid white line as the only boundary treatment — never a filled background or a shadow to delimit an interactive element. Curvature is reserved for two families: the photographic TiltedCards, whose image gets a 15px radius (paired with a top/bottom gradient mask) and whose cursor-following caption chip gets a 10px radius; and the Glass Exception family (see Elevation & Depth), which ranges 8-16px depending on the component — the contact form panel at 16px, its fields at 8px, the closing CTA at 14px, the carousel arrows and send button at 10px. Every other surface stays at 0 radius. Full-bleed breakout is a recurring silhouette move — both the Home video banner and the Diretoria showcase escape their container to span the entire viewport width.
 
 ## Components
 
 ### Buttons
-- **Shape:** square (0 radius); the only boundary is a solid white line, never a filled outline.
-- **Primary** (`liveButton`): Signal Blue (`#164194`) fill, white top/bottom border only (no side borders), full-width, 65px tall, uppercase bold label.
+- **Shape:** square (0 radius) by default; the only boundary is a solid white line, never a filled outline. The Glass Exception family below is the sole departure.
+- **Primary** (`liveButton`, hero CTA "Acesse Nossos Links"): Signal Blue (`#164194`) fill, white top/bottom border only (no side borders), full-width, 65px tall, uppercase bold label.
 - **Hover:** fills Signal Orange (`#e84b13`), text weight jumps to 900, 0.5s ease transition — a deliberately aggressive color flip rather than a subtle shift.
-- **Secondary** (`sendBtn`, the contact form submit): black fill, 1px white border, 50×40px, flips to a white fill with black text on hover.
+- **Primary — glass variant** (closing "Entrar na comunidade" CTA only, `.home-cta__button`): translucent white fill (8% alpha), `backdrop-filter: blur(16px)`, 1px white border (25% alpha), 14px radius, auto-width with 40px horizontal padding (not full-bleed like the hero CTA — this is the one button in the system sized to its own label). Hover tints the fill to Signal Orange (20% alpha) and the border to solid Signal Orange, rather than the hero CTA's hard color flip.
+- **Secondary — glass** (`sendBtn`, the contact form submit): translucent white fill (8% alpha), `backdrop-filter: blur(14px)`, 1px white border (25% alpha), 10px radius, auto-width. Hover tints to Signal Orange (22% alpha fill, solid border) — replaces an earlier solid-black/white-flip treatment.
+- **Carousel arrow — glass** (`.home-carousel__arrow`, prev/next on the hackathon carousel): same glass treatment as the send button — translucent white fill (8% alpha), `blur(14px)`, 25%-alpha white border, 10px radius, 50×40px. Same Signal Orange hover tint.
 
 ### Inputs / Fields
-- **Style:** transparent background, 2px solid white border, 0 radius, white mono text; placeholder/label copy is the only place `text-transform` is turned back to normal case (form field values render as typed, not forced uppercase).
-- **Focus:** no distinct focus treatment beyond the browser default; the border itself is the affordance.
+- **Style — glass:** translucent white fill (6% alpha), `backdrop-filter: blur(10px)`, 1px white border (22% alpha), 8px radius, white mono text; placeholder/label copy is the only place `text-transform` is turned back to normal case (form field values render as typed, not forced uppercase).
+- **Focus:** border tints to Signal Orange, fill brightens slightly (10% alpha) — the system's one real focus treatment beyond the browser default.
+- **Form panel** (`#form`, the container around all contact fields): same family at a larger scale — translucent white fill (6% alpha), `backdrop-filter: blur(18px)`, 1px white border (18% alpha), 16px radius — the whole form reads as one glass card sitting on the page's animated gradient.
 
 ### Cards / Containers — TiltedCard
 - **Corner style:** 15px radius on the image, 10px on the caption chip; the only rounded surfaces in the system.
@@ -195,7 +227,8 @@ Square-edged by default: buttons, inputs, nav chrome, and the footer all sit at 
 - **Do** author copy in natural case in source; the global uppercase transform handles the rendering.
 
 ### Don't:
-- **Don't** add `box-shadow` to any component — it's globally overridden to `none` and will not render even if written.
+- **Don't** add `box-shadow` to any component — it's globally overridden to `none` and will not render even if written, glass family included.
 - **Don't** introduce a second typeface. BB Mono Semi Regular is the only face in the system, across every role.
-- **Don't** add corner radius to buttons, inputs, or nav/footer chrome — 15px/10px curvature is reserved exclusively for the TiltedCard photo family.
+- **Don't** add corner radius to buttons, inputs, or nav/footer chrome outside the two named exceptions — the TiltedCard photo family (15px/10px) and the Glass Exception family (8-16px, see Elevation & Depth and Components). Every other surface stays at 0 radius.
+- **Don't** extend the glass treatment (translucent fill + blur + soft border) beyond its current scope — the closing CTA, the contact form panel and fields, the send button, and the carousel arrows — without a deliberate decision to widen it. It is not the system's new default button/input style.
 - **Don't** invent new accent hues outside Cobalto Profundo, Âmbar Queimado, Ouro Institucional, Signal Blue, and Signal Orange — the narrow palette is load-bearing for how the gradient reads as distinctive. Signal Orange is the one color free to travel to new interactive-emphasis uses; the other four stay put.
