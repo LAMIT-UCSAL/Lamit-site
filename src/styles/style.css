@@ -635,7 +635,7 @@ h2 {
   text-align: left;
 }
 
-@media (max-width: 920px ) , (max-height: 720px) {
+@media (max-width: 920px) {
 
 
   body {
@@ -810,6 +810,10 @@ h2 {
     margin-top: 20px;
   }
 
+  .btn-primary {
+    font-size: 0.8rem;
+  }
+
   .nav-toggle {
     display: flex;
   }
@@ -842,10 +846,6 @@ h2 {
     font-size: 1.8rem;
     margin-inline: 0;
     height: auto;
-  }
-
-  .btn-primary {
-    font-size: 0.8rem;
   }
 
 }

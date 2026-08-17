@@ -445,7 +445,7 @@ h2.home-cta__title {
 
 /* ---- Responsive ------------------------------------------------------------ */
 
-@media (max-width: 920px), (max-height: 720px) {
+@media (max-width: 920px) {
   .home-about {
     grid-template-columns: 1fr;
     padding-top: 80px;
