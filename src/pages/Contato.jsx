@@ -19,7 +19,7 @@ function Contato() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (formData.name === '') { showError('Por favor insira seu nome'); return }
@@ -30,9 +30,20 @@ function Contato() {
     if (!isPhoneValid(formData.phone)) { showError('Por favor insira um telefone válido'); return }
     if (formData.message === '') { showError('Por favor deixe uma mensagem'); return }
 
-    showSuccess('Sua mensagem foi enviada com sucesso').then(() => {
-      formRef.current.submit()
-    })
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/contato.lamit@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(formRef.current),
+      })
+
+      if (!response.ok) throw new Error('FormSubmit request failed')
+
+      showSuccess('Sua mensagem foi enviada com sucesso')
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch {
+      showError('Não foi possível enviar sua mensagem. Tente novamente mais tarde.')
+    }
   }
 
   return (
@@ -70,7 +81,6 @@ function Contato() {
             <input type="hidden" name="_subject" value="Nova Mensagem!" />
             <input type="text" name="_honey" style={{ display: 'none' }} />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="#" />
           </div>
         </form>
 
