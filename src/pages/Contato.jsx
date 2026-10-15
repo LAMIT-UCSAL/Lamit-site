@@ -88,13 +88,26 @@ function Contato() {
       <GrainientBackground />
       <Navbar currentPage="CONTATO" />
 
-      <div id="contact_content">
-        <div id="titleContainer">
-          <h1>Deixe uma mensagem</h1>
+      <main className="contact-page">
+        <div className="contact-page__intro">
+          <p className="contact-page__kicker">Contato</p>
+          <h1 className="contact-page__title">Deixe uma mensagem</h1>
+          <p className="contact-page__body">
+            Dúvidas, parcerias ou ideias? Fale com a LAMIT pelo formulário ou direto pelo nosso e-mail.
+          </p>
+
+          <div className="contact-page__email">
+            <span className="contact-page__email-label">E-mail</span>
+            <a href="mailto:contato.lamit@gmail.com">contato.lamit@gmail.com</a>
+            <button type="button" className="contact-page__copy" onClick={() => copiarTexto('contato.lamit@gmail.com')}>
+              Copiar
+            </button>
+          </div>
         </div>
 
         <form
           id="form"
+          className="contact-form"
           ref={formRef}
           action="https://formsubmit.co/contato.lamit@gmail.com"
           method="POST"
@@ -121,27 +134,14 @@ function Contato() {
             Seus dados são usados só para responder sua mensagem e chegam até nós por e-mail, via FormSubmit.
           </p>
 
-          <div className="sendContainer">
-            <button type="submit" id="sendBtn" disabled={isSending} aria-busy={isSending}>
-              {isSending ? 'Enviando…' : 'Enviar'}
-            </button>
-            <input type="hidden" name="_subject" value="Nova Mensagem!" />
-            <input type="text" name="_honey" style={{ display: 'none' }} />
-            <input type="hidden" name="_captcha" value="false" />
-          </div>
+          <button type="submit" id="sendBtn" disabled={isSending} aria-busy={isSending}>
+            {isSending ? 'Enviando…' : 'Enviar mensagem'}
+          </button>
+          <input type="hidden" name="_subject" value="Nova Mensagem!" />
+          <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input type="hidden" name="_captcha" value="false" />
         </form>
-
-        <div className="contact_msg">
-          <h3>
-            Ou entre em contato diretamente
-            <br />
-            pelo nosso email
-          </h3>
-          <div id="contacts">
-            <p><button onClick={() => copiarTexto('contato.lamit@gmail.com')}>contato.lamit@gmail.com</button></p>
-          </div>
-        </div>
-      </div>
+      </main>
       <Footer />
     </div>
   )

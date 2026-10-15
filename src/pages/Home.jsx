@@ -25,7 +25,7 @@ function Home() {
 
       </div>
 
-      <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer" className="btn-primary">
+      <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer" className="btn-primary footer-dark-zone">
         Acesse Nossos Links
       </a>
 
