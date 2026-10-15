@@ -4,6 +4,16 @@ function CommunityCTA() {
   return (
     <section className="home-cta" aria-labelledby="home-cta-title">
       <div className="home-cta__content">
+        <img
+          src="/media/mascot/pitch-descolado.webp"
+          alt=""
+          aria-hidden="true"
+          width="520"
+          height="608"
+          loading="lazy"
+          decoding="async"
+          className="home-cta__mascot"
+        />
         <p className="home-cta__kicker">Junte-se a nós</p>
         <h2 id="home-cta-title" className="home-cta__title">
           Faça parte da nossa comunidade

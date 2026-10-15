@@ -1,6 +1,11 @@
 import Grainient from './Grainient'
+import { useTheme } from '../utils/theme'
 
 function GrainientBackground() {
+  const { theme } = useTheme()
+  // No tema claro o gradiente não é o fundo da página: aparece em faixas (.brand-band)
+  if (theme === 'light') return null
+
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
       {/* Mesmas cores de --color-cobalt e --color-amber (src/styles/style.css):

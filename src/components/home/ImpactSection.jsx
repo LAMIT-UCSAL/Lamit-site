@@ -62,6 +62,16 @@ function ImpactSection() {
 
   return (
     <section className="home-impact" aria-labelledby="home-impact-title">
+      <img
+        src="/media/mascot/pitch-foguete.webp"
+        alt=""
+        aria-hidden="true"
+        width="520"
+        height="547"
+        loading="lazy"
+        decoding="async"
+        className="home-impact__mascot"
+      />
       <div className="home-impact__header">
         <p className="home-impact__kicker">Em números</p>
         <h2 id="home-impact-title" className="home-impact__title">

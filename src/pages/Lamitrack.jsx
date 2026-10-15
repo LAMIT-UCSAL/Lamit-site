@@ -11,13 +11,23 @@ function Lamitrack() {
     <div className="page-bg" style={{ background: 'none' }}>
       <GrainientBackground />
       <Navbar currentPage="LAMITRACK" />
-      <Footer />
 
       <section className="not-found" aria-labelledby="lamitrack-title">
-        <p className="home-cta__kicker">LamiTrack</p>
-        <h1 id="lamitrack-title">Coming Soon</h1>
-        <p className="not-found__body">A vitrine de eventos da LAMIT está chegando.</p>
+        <div className="not-found__panel">
+          <img
+            src="/media/mascot/pitch-pensativo.webp"
+            alt=""
+            aria-hidden="true"
+            width="640"
+            height="588"
+            className="page-mascot"
+          />
+          <p className="home-cta__kicker">LamiTrack</p>
+          <h1 id="lamitrack-title">Coming Soon</h1>
+          <p className="not-found__body">A vitrine de eventos da LAMIT está chegando.</p>
+        </div>
       </section>
+      <Footer />
     </div>
   )
 }

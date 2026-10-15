@@ -68,7 +68,6 @@ function Diretoria() {
     <div className="page-bg" style={{ background: 'none' }}>
       <GrainientBackground />
       <Navbar currentPage="DIRETORIA" />
-      <Footer />
 
       <main className="diretoria-page-content">
         <section className="diretoria-hero">
@@ -83,6 +82,7 @@ function Diretoria() {
           ))}
         </section>
       </main>
+      <Footer />
     </div>
   )
 }

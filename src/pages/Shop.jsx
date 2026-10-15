@@ -10,13 +10,23 @@ function Shop() {
     <div className="page-bg" style={{ background: 'none' }}>
       <GrainientBackground />
       <Navbar currentPage="SHOP" />
-      <Footer />
 
       <section id="store" className="not-found" aria-labelledby="store-title">
-        <p className="home-cta__kicker">Lamit Store</p>
-        <h1 id="store-title">Coming Soon</h1>
-        <p className="not-found__body">A loja oficial da LAMIT está chegando.</p>
+        <div className="not-found__panel">
+          <img
+            src="/media/mascot/pitch-pensativo.webp"
+            alt=""
+            aria-hidden="true"
+            width="640"
+            height="588"
+            className="page-mascot"
+          />
+          <p className="home-cta__kicker">Lamit Store</p>
+          <h1 id="store-title">Coming Soon</h1>
+          <p className="not-found__body">A loja oficial da LAMIT está chegando.</p>
+        </div>
       </section>
+      <Footer />
     </div>
   )
 }

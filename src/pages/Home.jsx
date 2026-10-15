@@ -7,6 +7,7 @@ import CommunityCTA from '../components/home/CommunityCTA'
 import HeroVideos from '../components/home/HeroVideos'
 import PartnersSection from '../components/home/PartnersSection'
 import ImpactSection from '../components/home/ImpactSection'
+import PitchSection from '../components/home/PitchSection'
 import { usePageMeta } from '../utils/usePageMeta'
 
 function Home() {
@@ -17,12 +18,11 @@ function Home() {
 
   return (
     <>
-      <div className="banner1">
-        <Navbar currentPage="HOME" />
+      <Navbar currentPage="HOME" />
 
+      <div className="banner1">
         <HeroVideos />
 
-        <Footer />
       </div>
 
       <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer" className="btn-primary">
@@ -32,12 +32,15 @@ function Home() {
       <div className="home-narrative">
         <div className="home-narrative__bg" aria-hidden="true" />
         <AboutSection />
+        <PitchSection />
         <ImpactSection />
         <HackathonCarousel />
         <EventsSection />
         <PartnersSection />
         <CommunityCTA />
       </div>
+
+      <Footer />
     </>
   )
 }

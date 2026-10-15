@@ -87,7 +87,6 @@ function Contato() {
     <div className="page-bg" style={{ background: 'none' }}>
       <GrainientBackground />
       <Navbar currentPage="CONTATO" />
-      <Footer />
 
       <div id="contact_content">
         <div id="titleContainer">
@@ -143,6 +142,7 @@ function Contato() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 function Navbar({ currentPage }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -42,22 +43,30 @@ function Navbar({ currentPage }) {
   }, [isMenuOpen])
 
   return (
-    <>
-      <Link to="/"><img src="/media/brand/logo-horizontal.svg" alt="LAMIT" className="nav-logo" /></Link>
+    <header className="site-header">
+      <Link to="/" className="site-header__brand" aria-label="LAMIT — início">
+        <img src="/media/brand/escudo-branco.webp" alt="" className="nav-logo nav-logo--dark" width="159" height="192" />
+        <img src="/media/brand/escudo.webp" alt="" className="nav-logo nav-logo--light" width="158" height="192" />
+        <span className="site-header__wordmark">LAMIT</span>
+      </Link>
 
-      <button
-        ref={toggleRef}
-        type="button"
-        className={`nav-toggle${isMenuOpen ? ' is-open' : ''}`}
-        onClick={() => setIsMenuOpen((open) => !open)}
-        aria-expanded={isMenuOpen}
-        aria-controls="nav-menu"
-        aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div className="site-header__actions">
+        <ThemeToggle />
+
+        <button
+          ref={toggleRef}
+          type="button"
+          className={`nav-toggle${isMenuOpen ? ' is-open' : ''}`}
+          onClick={() => setIsMenuOpen((open) => !open)}
+          aria-expanded={isMenuOpen}
+          aria-controls="nav-menu"
+          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
       <nav
         id="nav-menu"
@@ -76,7 +85,7 @@ function Navbar({ currentPage }) {
           </Link>
         ))}
       </nav>
-    </>
+    </header>
   )
 }
 
