@@ -375,10 +375,10 @@ body::before {
 .nav_home a {
   display: block;
   position: relative;
-  margin-inline: 2rem;
+  margin-inline: clamp(0.9rem, 1.6vw, 1.75rem);
   color: var(--color-white);
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-style: normal;
   font-weight: bold;
   line-height: 1.5rem;
@@ -652,13 +652,6 @@ h2 {
   width: 100%;
   min-height: 100vh;
   z-index: 1;
-}
-
-#storeTitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .diretoria-page-content {
@@ -1049,7 +1042,7 @@ h2 {
   }
 
   .nav_home a {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-inline: 0;
     height: auto;
   }

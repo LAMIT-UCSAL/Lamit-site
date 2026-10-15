@@ -4,7 +4,7 @@ import GrainientBackground from '../components/GrainientBackground'
 import { usePageMeta } from '../utils/usePageMeta'
 
 function Shop() {
-  usePageMeta('Shop', 'A loja da LAMIT está chegando.')
+  usePageMeta('Shop', 'A loja oficial da LAMIT está chegando.')
 
   return (
     <div className="page-bg" style={{ background: 'none' }}>
@@ -12,8 +12,10 @@ function Shop() {
       <Navbar currentPage="SHOP" />
       <Footer />
 
-      <section id="store">
-        <h1 id="storeTitle">Coming Soon</h1>
+      <section id="store" className="not-found" aria-labelledby="store-title">
+        <p className="home-cta__kicker">Lamit Store</p>
+        <h1 id="store-title">Coming Soon</h1>
+        <p className="not-found__body">A loja oficial da LAMIT está chegando.</p>
       </section>
     </div>
   )

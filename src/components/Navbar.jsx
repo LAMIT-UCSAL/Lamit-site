@@ -10,6 +10,7 @@ function Navbar({ currentPage }) {
     { to: '/', label: 'HOME' },
     { to: '/diretoria', label: 'DIRETORIA' },
     { to: '/shop', label: 'SHOP' },
+    { to: '/lamitrack', label: 'LAMITRACK' },
     { to: '/contato', label: 'CONTATO' },
   ]
 
