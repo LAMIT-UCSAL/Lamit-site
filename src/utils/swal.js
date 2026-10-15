@@ -5,8 +5,8 @@ export function showCredits() {
     position: 'center',
     title: 'CREDITS',
     html: `
-      <div>Web Development by Guilherme Mota<br>
-      Web Designer by Guilherme Mota<br>
+      <div>Web Development by Guilherme Mota & Gabriel Maia<br>
+      Web Designer by Guilherme Mota & Gabriel Maia<br>
       Pictures by Mike FILLIPPOV</div>
     `,
     color: '#fff',
