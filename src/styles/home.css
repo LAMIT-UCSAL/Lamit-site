@@ -499,6 +499,9 @@ h2.home-cta__title {
   position: relative;
   width: min(100%, 460px);
   height: auto;
+  /* dissolve a base da ilustração (mesmo tratamento das fotos da diretoria) */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 96%);
   animation: pitch-float 5s ease-in-out infinite;
 }
 

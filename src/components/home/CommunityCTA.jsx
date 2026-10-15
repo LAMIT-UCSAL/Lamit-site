@@ -2,7 +2,7 @@ import { communityCta } from '../../data/home'
 
 function CommunityCTA() {
   return (
-    <section className="home-cta" aria-labelledby="home-cta-title">
+    <section className="home-cta footer-dark-zone" aria-labelledby="home-cta-title">
       <div className="home-cta__content">
         <img
           src="/media/mascot/pitch-descolado.webp"

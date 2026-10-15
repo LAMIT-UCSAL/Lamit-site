@@ -1,8 +1,37 @@
+import { useEffect, useState } from 'react'
 import { showCredits } from '../utils/swal'
 
+// Rodapé fixo. Quando uma faixa escura (.footer-dark-zone, ex.: o convite final da home) passa por baixo
+// dele, ganha a classe is-on-dark e fica branco — no tema claro, senão, sumiria sobre o azul.
+function useOverDarkZone() {
+  const [onDark, setOnDark] = useState(false)
+
+  useEffect(() => {
+    const zones = document.querySelectorAll('.footer-dark-zone')
+    if (zones.length === 0 || !('IntersectionObserver' in window)) return undefined
+
+    const visible = new Set()
+    // Só a faixa de baixo da tela (onde o rodapé fica) conta
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target)
+        else visible.delete(entry.target)
+      })
+      setOnDark(visible.size > 0)
+    }, { rootMargin: '-92% 0px 0px 0px' })
+
+    zones.forEach((zone) => observer.observe(zone))
+    return () => observer.disconnect()
+  }, [])
+
+  return onDark
+}
+
 function Footer() {
+  const onDark = useOverDarkZone()
+
   return (
-    <div id="downElements">
+    <div id="downElements" className={onDark ? 'is-on-dark' : undefined}>
       <div> 2026 LAMIT </div>
       <button onClick={showCredits} id="creditsbtn">CREDITS</button>
       <nav className="socialMedias">

@@ -325,6 +325,17 @@ a {
   filter: brightness(0);
 }
 
+/* Sobre faixas escuras (convite final da home) o rodapé volta a ser branco, em qualquer tema */
+#downElements.is-on-dark div,
+#downElements.is-on-dark #creditsbtn {
+  color: var(--color-white);
+  transition: color 0.3s ease;
+}
+
+#downElements.is-on-dark .socialMedias a img {
+  filter: none;
+}
+
 #downElements div {
   font-size: 0.84rem;
   bottom: 2%;
