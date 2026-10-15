@@ -576,9 +576,16 @@ h2.home-impact__title {
 }
 
 .home-partners__header {
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto 48px;
   text-align: center;
+}
+
+/* Desktop: o título fica em uma linha só */
+@media (min-width: 761px) {
+  h2.home-partners__title {
+    white-space: nowrap;
+  }
 }
 
 .home-partners__kicker {
