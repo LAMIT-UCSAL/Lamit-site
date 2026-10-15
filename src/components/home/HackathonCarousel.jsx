@@ -60,15 +60,13 @@ function HackathonCarousel() {
     dragRef.current.active = false
   }
 
+  // Só o gesto horizontal (trackpad ou Shift+roda) troca a foto. A roda vertical continua rolando a
+  // página: o onWheel do React é passivo, então preventDefault não funcionava e as duas coisas aconteciam juntas.
   const handleWheel = (e) => {
-    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
-    if (Math.abs(e.deltaY) < WHEEL_THRESHOLD || wheelCooldownRef.current) {
-      e.preventDefault()
-      return
-    }
-    e.preventDefault()
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return
+    if (Math.abs(e.deltaX) < WHEEL_THRESHOLD || wheelCooldownRef.current) return
     wheelCooldownRef.current = true
-    goTo(e.deltaY > 0 ? step + 1 : step - 1)
+    goTo(e.deltaX > 0 ? step + 1 : step - 1)
     setTimeout(() => {
       wheelCooldownRef.current = false
     }, WHEEL_COOLDOWN_MS)

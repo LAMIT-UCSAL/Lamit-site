@@ -13,6 +13,7 @@ export function showCredits() {
     background: 'black',
     backdrop: 'black',
     confirmButtonText: '',
+    confirmButtonAriaLabel: 'Fechar créditos',
     customClass: {
       confirmButton: 'swal-confirmBtn',
       title: 'swal-title',

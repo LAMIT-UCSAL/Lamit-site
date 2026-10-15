@@ -6,6 +6,7 @@ import EventsSection from '../components/home/EventsSection'
 import CommunityCTA from '../components/home/CommunityCTA'
 import HeroVideos from '../components/home/HeroVideos'
 import PartnersSection from '../components/home/PartnersSection'
+import ImpactSection from '../components/home/ImpactSection'
 import { usePageMeta } from '../utils/usePageMeta'
 
 function Home() {
@@ -31,6 +32,7 @@ function Home() {
       <div className="home-narrative">
         <div className="home-narrative__bg" aria-hidden="true" />
         <AboutSection />
+        <ImpactSection />
         <HackathonCarousel />
         <EventsSection />
         <PartnersSection />

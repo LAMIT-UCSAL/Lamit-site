@@ -72,6 +72,15 @@ export const events = [
   },
 ]
 
+// Números de impacto informados pela diretoria (2026-10-14).
+// highlight: card de destaque em texto, sem número
+export const impactStats = [
+  { value: '40+', label: 'hackathons disputados' },
+  { value: '20+', label: 'pódios conquistados' },
+  { value: 'R$ 30 mil+', label: 'em premiações' },
+  { value: 'Viagens internacionais', label: 'e outras bolsas conquistadas', highlight: true },
+]
+
 export const communityCta = {
   href: 'https://chat.whatsapp.com/JKebVc0VWJpBCSHdorQ3b6',
 }

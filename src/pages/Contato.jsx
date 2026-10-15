@@ -16,23 +16,42 @@ function Contato() {
     phone: '',
     message: '',
   })
+  const [errors, setErrors] = useState({})
+  const [isSending, setIsSending] = useState(false)
   const formRef = useRef(null)
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+    // O erro do campo some assim que a pessoa começa a corrigir
+    if (errors[name]) setErrors({ ...errors, [name]: undefined })
+  }
+
+  // Todos os erros de uma vez, abaixo de cada campo (telefone é opcional)
+  const validate = () => {
+    const next = {}
+    if (!formData.name.trim()) next.name = 'Informe seu nome.'
+    else if (!isNameValid(formData.name)) next.name = 'Use apenas letras no nome.'
+    if (!formData.email.trim()) next.email = 'Informe seu e-mail.'
+    else if (!isEmailValid(formData.email)) next.email = 'Confira o e-mail: ele parece incompleto.'
+    if (formData.phone.trim() && !isPhoneValid(formData.phone)) next.phone = 'Use DDD e número, por exemplo (71) 99999-9999.'
+    if (!formData.message.trim()) next.message = 'Escreva sua mensagem.'
+    return next
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (isSending) return
 
-    if (formData.name === '') { showError('Por favor insira seu nome'); return }
-    if (!isNameValid(formData.name)) { showError('Por favor insira um nome válido'); return }
-    if (formData.email === '') { showError('Por favor insira seu email'); return }
-    if (!isEmailValid(formData.email)) { showError('Por favor insira um email válido'); return }
-    if (formData.phone === '') { showError('Por favor insira seu telefone'); return }
-    if (!isPhoneValid(formData.phone)) { showError('Por favor insira um telefone válido'); return }
-    if (formData.message === '') { showError('Por favor deixe uma mensagem'); return }
+    const nextErrors = validate()
+    setErrors(nextErrors)
+    const firstInvalid = Object.keys(nextErrors)[0]
+    if (firstInvalid) {
+      document.getElementById(firstInvalid)?.focus()
+      return
+    }
 
+    setIsSending(true)
     try {
       const response = await fetch('https://formsubmit.co/ajax/contato.lamit@gmail.com', {
         method: 'POST',
@@ -46,8 +65,23 @@ function Contato() {
       setFormData({ name: '', email: '', phone: '', message: '' })
     } catch {
       showError('Não foi possível enviar sua mensagem. Tente novamente mais tarde.')
+    } finally {
+      setIsSending(false)
     }
   }
+
+  const fieldProps = (name) => ({
+    id: name,
+    name,
+    value: formData[name],
+    onChange: handleChange,
+    'aria-invalid': errors[name] ? 'true' : undefined,
+    'aria-describedby': errors[name] ? `${name}-error` : undefined,
+  })
+
+  const fieldError = (name) => (errors[name]
+    ? <span id={`${name}-error`} className="field-error" role="alert">{errors[name]}</span>
+    : null)
 
   return (
     <div className="page-bg" style={{ background: 'none' }}>
@@ -66,21 +100,32 @@ function Contato() {
           action="https://formsubmit.co/contato.lamit@gmail.com"
           method="POST"
           onSubmit={handleSubmit}
+          noValidate
         >
           <label htmlFor="name">Nome</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+          <input type="text" autoComplete="name" {...fieldProps('name')} />
+          {fieldError('name')}
 
           <label htmlFor="email">E-mail</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+          <input type="email" autoComplete="email" {...fieldProps('email')} />
+          {fieldError('email')}
 
-          <label htmlFor="phone">Telefone</label>
-          <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+          <label htmlFor="phone">Telefone <span className="field-optional">(opcional)</span></label>
+          <input type="tel" autoComplete="tel" {...fieldProps('phone')} />
+          {fieldError('phone')}
 
           <label htmlFor="message">Mensagem</label>
-          <textarea id="message" name="message" value={formData.message} onChange={handleChange}></textarea>
+          <textarea {...fieldProps('message')}></textarea>
+          {fieldError('message')}
+
+          <p className="form-privacy">
+            Seus dados são usados só para responder sua mensagem e chegam até nós por e-mail, via FormSubmit.
+          </p>
 
           <div className="sendContainer">
-            <button type="submit" id="sendBtn">ENVIAR</button>
+            <button type="submit" id="sendBtn" disabled={isSending} aria-busy={isSending}>
+              {isSending ? 'Enviando…' : 'Enviar'}
+            </button>
             <input type="hidden" name="_subject" value="Nova Mensagem!" />
             <input type="text" name="_honey" style={{ display: 'none' }} />
             <input type="hidden" name="_captcha" value="false" />

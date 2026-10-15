@@ -445,6 +445,128 @@ h2.home-cta__title {
   color: #ffffff;
 }
 
+/* ---- Números de impacto ---------------------------------------------------- */
+
+.home-impact {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 96px) clamp(64px, 8vw, 110px);
+}
+
+.home-impact__header {
+  margin: 0 0 32px;
+  text-align: left;
+}
+
+.home-impact__kicker {
+  margin: 0 0 10px;
+  color: #d7c06b;
+  font-size: 0.9rem;
+  letter-spacing: 0.28rem;
+}
+
+h2.home-impact__title {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.home-impact__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Família glass do site: vidro claro sobre o fundo noturno */
+.home-impact__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  min-height: 170px;
+  padding: 28px 24px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 3px solid #e84b13;
+  border-radius: var(--radius-lg);
+}
+
+.home-impact__value {
+  font-size: clamp(2rem, 2.6vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.home-impact__label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Destaque em texto (sem número): título menor, com quebra */
+.home-impact__card--text {
+  border-top-color: #d7c06b;
+}
+
+.home-impact__card--text .home-impact__value {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.15;
+  white-space: normal;
+}
+
+@media (max-width: 1100px) {
+  .home-impact__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-impact__value {
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+  }
+}
+
+/* Celular estreito: uma coluna, número e descrição lado a lado */
+@media (max-width: 560px) {
+  .home-impact__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .home-impact__card {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 0;
+    padding: 18px 20px;
+  }
+
+  .home-impact__value {
+    font-size: 2rem;
+  }
+
+  .home-impact__card--text {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .home-impact__card--text .home-impact__value {
+    font-size: 1.3rem;
+  }
+}
+
 /* ---- Parceiros ------------------------------------------------------------- */
 
 .home-partners {
