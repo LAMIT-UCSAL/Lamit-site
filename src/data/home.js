@@ -73,11 +73,12 @@ export const events = [
 ]
 
 // Números de impacto informados pela diretoria (2026-10-14).
+// count/prefix/suffix: animação de contagem (value é o texto final, lido por leitores de tela)
 // highlight: card de destaque em texto, sem número
 export const impactStats = [
-  { value: '40+', label: 'hackathons disputados' },
-  { value: '20+', label: 'pódios conquistados' },
-  { value: 'R$ 30 mil+', label: 'em premiações' },
+  { value: '40+', count: 40, suffix: '+', label: 'hackathons disputados' },
+  { value: '20+', count: 20, suffix: '+', label: 'pódios conquistados' },
+  { value: 'R$ 30 mil+', prefix: 'R$ ', count: 30, suffix: ' mil+', label: 'em premiações' },
   { value: 'Viagens internacionais', label: 'e outras bolsas conquistadas', highlight: true },
 ]
 

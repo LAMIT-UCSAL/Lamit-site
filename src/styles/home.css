@@ -486,6 +486,8 @@ h2.home-impact__title {
 
 /* Família glass do site: vidro claro sobre o fundo noturno */
 .home-impact__card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -497,8 +499,89 @@ h2.home-impact__title {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(var(--color-white-rgb), 0.18);
-  border-top: 3px solid var(--color-signal-orange);
   border-radius: var(--radius-lg);
+  transition: transform 0.35s cubic-bezier(.2, .7, .2, 1), border-color 0.35s ease, background-color 0.35s ease;
+}
+
+/* Barra de destaque no topo (desenhada da esquerda para a direita na entrada) */
+.home-impact__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-signal-orange);
+  transform-origin: left;
+}
+
+/* Brilho sutil que acompanha o hover */
+.home-impact__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 0% 0%, rgba(var(--color-signal-orange-rgb), 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.home-impact__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--color-signal-orange-rgb), 0.55);
+  background-color: rgba(var(--color-white-rgb), 0.09);
+}
+
+.home-impact__card:hover::after {
+  opacity: 1;
+}
+
+/* Entrada: cards sobem um após o outro quando a seção aparece (ImpactSection.jsx) */
+.home-impact__grid:not(.is-revealed) .home-impact__card {
+  opacity: 0;
+}
+
+.home-impact__grid:not(.is-revealed) .home-impact__card::before {
+  transform: scaleX(0);
+}
+
+.home-impact__grid.is-revealed .home-impact__card {
+  animation: impact-card-in 0.7s cubic-bezier(.2, .7, .2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 120ms);
+}
+
+.home-impact__grid.is-revealed .home-impact__card::before {
+  animation: impact-bar-in 0.9s cubic-bezier(.2, .7, .2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 120ms + 200ms);
+}
+
+@keyframes impact-card-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes impact-bar-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Texto acima do brilho do hover (::after) */
+.home-impact__value,
+.home-impact__label {
+  position: relative;
+  z-index: 1;
+}
+
+.home-impact__value {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-impact__grid:not(.is-revealed) .home-impact__card { opacity: 1; }
+  .home-impact__grid:not(.is-revealed) .home-impact__card::before { transform: none; }
+  .home-impact__card,
+  .home-impact__card::before { animation: none !important; transition: none; }
+  .home-impact__card:hover { transform: none; }
 }
 
 .home-impact__value {
@@ -517,8 +600,16 @@ h2.home-impact__title {
 }
 
 /* Destaque em texto (sem número): título menor, com quebra */
-.home-impact__card--text {
-  border-top-color: var(--color-gold);
+.home-impact__card--text::before {
+  background: var(--color-gold);
+}
+
+.home-impact__card--text:hover {
+  border-color: rgba(var(--color-gold-rgb), 0.55);
+}
+
+.home-impact__card--text::after {
+  background: radial-gradient(120% 80% at 0% 0%, rgba(var(--color-gold-rgb), 0.18), transparent 60%);
 }
 
 .home-impact__card--text .home-impact__value {
