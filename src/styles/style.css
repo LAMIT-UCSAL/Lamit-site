@@ -1,6 +1,28 @@
 /* Padrão do ecossistema LAMIT (mesmo da Lamit Store): Montserrat e cantos suavizados.
    Caixa alta só em menu, etiquetas (kickers), datas e rótulos — ver bloco "Caixa alta" abaixo. */
 :root {
+  /* ---- Cores: mesmos nomes da Lamit Store (lamit-store/css/tokens.css) ---- */
+  --color-cobalt: #0A3383;          /* Cobalto Profundo — gradiente, chips */
+  --color-signal-blue: #164194;     /* CTA principal */
+  --color-signal-orange: #E84B13;   /* hover, foco, sublinhado, ativo */
+  --color-signal-orange-rgb: 232, 75, 19;
+  --color-amber: #C17402;           /* só dentro do gradiente */
+  --color-amber-rgb: 193, 116, 2;
+  --color-gold: #D7C06B;            /* kickers e rótulos */
+  --color-gold-rgb: 215, 192, 107;
+  --color-night: #081536;           /* fundo da narrativa da home */
+  --color-ink: #0B0D12;             /* texto escuro sobre o laranja */
+
+  /* ---- Tema escuro do site ---- */
+  --color-white: #FFFFFF;
+  --color-white-rgb: 255, 255, 255;
+  --color-black: #000000;
+  --color-black-rgb: 0, 0, 0;
+  --color-gold-bright: #FFBB00;     /* e-mail acionável no contato */
+  --color-error-soft: #FFB199;      /* mensagens de erro do formulário */
+  --color-text-subtle: #A3A3A3;
+  --color-link-hover: rgb(79, 79, 251);
+
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --radius-sm: 8px;    /* ticks, detalhes */
   --radius-md: 12px;   /* botões, campos, setas */
@@ -56,10 +78,10 @@ body {
   -ms-user-select: none;
   overflow-x: hidden;
   overscroll-behavior: none;
-  color: #FFF;
+  color: var(--color-white);
   text-align: center;
   line-height: normal;
-  background-color: #000000;
+  background-color: var(--color-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -89,9 +111,9 @@ a {
 /* Fallback do Grainient sem WebGL: mesmas cores (cobalto/âmbar), estático */
 .grainient-container--fallback {
   background:
-    radial-gradient(ellipse 60% 80% at 30% 40%, rgba(193, 116, 2, 0.85), transparent 70%),
-    radial-gradient(ellipse 50% 90% at 80% 70%, rgba(193, 116, 2, 0.55), transparent 70%),
-    #0A3383;
+    radial-gradient(ellipse 60% 80% at 30% 40%, rgba(var(--color-amber-rgb), 0.85), transparent 70%),
+    radial-gradient(ellipse 50% 90% at 80% 70%, rgba(var(--color-amber-rgb), 0.55), transparent 70%),
+    var(--color-cobalt);
 }
 
 .grainient-container {
@@ -128,8 +150,8 @@ a {
   position: fixed;
   left: 2%;
   margin-inline: 10px;
-  background-color: #ffffff00;
-  color: #FFF;
+  background-color: transparent;
+  color: var(--color-white);
   border: 0px;
   cursor: pointer;
 }
@@ -164,18 +186,18 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFF;
+  color: var(--color-white);
   font-family: var(--font-primary);
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.02em;
   border: none;
-  background: #164194;
+  background: var(--color-signal-blue);
   width: 100%;
   height: 56px;
   flex-shrink: 0;
-  color: #ffffff;
+  color: var(--color-white);
   transition: all 0.5s ease-in-out;
 }
 
@@ -183,8 +205,8 @@ a {
 .btn-primary:hover,
 .btn-primary:focus-visible {
   cursor: pointer;
-  background: #e84b13;
-  color: #0B0D12;
+  background: var(--color-signal-orange);
+  color: var(--color-ink);
   transition: all 0.5s ease-in-out;
 }
 
@@ -207,7 +229,7 @@ a {
   width: 25%;
   height: 100%;
   object-fit: cover;
-  background: #000;
+  background: var(--color-black);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
 }
@@ -244,7 +266,7 @@ a {
   width: 28px;
   height: 3px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(var(--color-white-rgb), 0.35);
   overflow: hidden;
 }
 
@@ -253,7 +275,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: #e84b13;
+  background: var(--color-signal-orange);
   transform: scaleX(0);
   transform-origin: left;
 }
@@ -310,7 +332,7 @@ a {
   display: block;
   width: 28px;
   height: 2px;
-  background: #ffffff;
+  background: var(--color-white);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -333,7 +355,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 80px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(var(--color-black-rgb), 0.7) 0%, transparent 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -342,7 +364,7 @@ body::before {
   display: block;
   position: relative;
   margin-inline: 2rem;
-  color: #ffffff;
+  color: var(--color-white);
   text-align: center;
   font-size: 1.2rem;
   font-style: normal;
@@ -362,7 +384,7 @@ body::before {
   right: 0;
   bottom: -8px;
   height: 2px;
-  background: #e84b13;
+  background: var(--color-signal-orange);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease-in-out;
@@ -405,11 +427,11 @@ body::before {
   margin: 0 auto;
   width: 350px;
   padding: 32px;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-white);
+  background: rgba(var(--color-white-rgb), 0.06);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(var(--color-white-rgb), 0.18);
   border-radius: var(--radius-lg);
 }
 
@@ -419,26 +441,26 @@ label {
 
 .field-optional {
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(var(--color-white-rgb), 0.6);
 }
 
 .field-error {
   margin-top: -2px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #ffb199;
+  color: var(--color-error-soft);
 }
 
 input[aria-invalid="true"],
 textarea[aria-invalid="true"] {
-  border-color: #e84b13;
+  border-color: var(--color-signal-orange);
 }
 
 .form-privacy {
   margin: 8px 0 0;
   font-size: 0.7rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--color-white-rgb), 0.65);
 }
 
 #sendBtn:disabled {
@@ -455,22 +477,22 @@ input,
 textarea {
   text-transform: none;
   width: 100%;
-  color: #ffffff;
+  color: var(--color-white);
   font-family: var(--font-primary);
   padding: 1.2vh 12px;
   font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(var(--color-white-rgb), 0.06);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--color-white-rgb), 0.22);
   border-radius: var(--radius-md);
   transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 input:focus,
 textarea:focus {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #e84b13;
+  background: rgba(var(--color-white-rgb), 0.1);
+  border-color: var(--color-signal-orange);
   outline: none;
 }
 
@@ -490,11 +512,11 @@ textarea {
   margin-top: 25px;
   font-family: var(--font-primary);
   font-weight: bold;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  background: rgba(var(--color-white-rgb), 0.08);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(var(--color-white-rgb), 0.25);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: 0.4s ease;
@@ -503,9 +525,9 @@ textarea {
 #sendBtn:hover,
 #sendBtn:focus-visible {
   font-weight: bold;
-  background: rgba(232, 75, 19, 0.22);
-  border-color: #e84b13;
-  color: #ffffff;
+  background: rgba(var(--color-signal-orange-rgb), 0.22);
+  border-color: var(--color-signal-orange);
+  color: var(--color-white);
 }
 
 #titleContainer {
@@ -516,7 +538,7 @@ textarea {
   padding: 0;
   left: 10%;
   top: 15%;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 h1 {
@@ -544,7 +566,7 @@ h2 {
   right: 10%;
   margin: 0;
   transform: translate(0, -50%);
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 #contacts {
@@ -554,7 +576,7 @@ h2 {
 }
 
 #contacts p {
-  color: #ffffff;
+  color: var(--color-white);
   letter-spacing: 0px;
   text-align: end;
   margin: -1vh;
@@ -567,13 +589,13 @@ h2 {
   font-family: var(--font-primary);
   font-weight: bold;
   background-color: transparent;
-  color: #ffbb00;
+  color: var(--color-gold-bright);
   border: 0px;
 }
 
 #contacts p button:hover {
   cursor: pointer;
-  color:rgb(79, 79, 251);
+  color:var(--color-link-hover);
 }
 
 .swal2-popup {
@@ -586,28 +608,28 @@ h2 {
 .swal-confirmBtn {
   height: 30px;
   width: 30px;
-  background-color: #00000000 !important;
+  background-color: transparent !important;
   background-image: url(/media/icons/icons8-close-50.png) !important;
   background-size: cover !important;
-  color: #ffffff;
+  color: var(--color-white);
   border: 0px;
   box-shadow: white;
 }
 
 .swal2-confirm {
-  background-color: #00000000 !important;
-  color: #ffffff;
+  background-color: transparent !important;
+  color: var(--color-white);
   border: 0px;
   box-shadow: white;
 }
 
 .swal2-confirm:hover{
   transition: all 0.5s;
-  background-color: #ffffff !important ;
-  color: #000 !important;
+  background-color: var(--color-white) !important ;
+  color: var(--color-black) !important;
 }
 .swal-confirmBtn:hover{
-  background-color: #000 !important ;
+  background-color: var(--color-black) !important ;
 }
 
 
@@ -656,7 +678,7 @@ h2 {
 
 .not-found__body {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--color-white-rgb), 0.85);
 }
 
 .diretoria-hero {
@@ -668,7 +690,7 @@ h2 {
 
 .diretoria-kicker {
   margin: 0 0 10px;
-  color: #d7c06b;
+  color: var(--color-gold);
   font-size: 2rem;
   letter-spacing: 0.28rem;
   font-weight: bold;
@@ -683,7 +705,7 @@ h2 {
 .diretoria-intro {
   margin: 18px auto 0;
   max-width: 680px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(var(--color-white-rgb), 0.8);
   font-size: 0.98rem;
   line-height: 1.7;
   text-align: center;
@@ -717,7 +739,7 @@ h2 {
   grid-template-columns: minmax(250px, 0.8fr) minmax(360px, 1.2fr);
   min-height: clamp(360px, 42vw, 560px);
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(var(--color-black-rgb), 0.2);
   overflow: visible;
   box-shadow: none;
 }
@@ -763,14 +785,14 @@ h2 {
 }
 
 .director-banner__index {
-  color: rgba(215, 192, 107, 0.9);
+  color: rgba(var(--color-gold-rgb), 0.9);
   font-size: 0.9rem;
   letter-spacing: 0.36rem;
 }
 
 .director-banner__label {
   margin: 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(var(--color-white-rgb), 0.72);
   font-size: 0.9rem;
   letter-spacing: 0.18rem;
 }
@@ -790,8 +812,8 @@ h2 {
   margin: 0;
   padding: 6px 12px;
   border-radius: var(--radius-md);
-  background: #0A3383;
-  color: #ffffff;
+  background: var(--color-cobalt);
+  color: var(--color-white);
   font-size: 0.8rem;
   font-weight: 600;
   line-height: 1.4;
@@ -806,7 +828,7 @@ h2 {
 .director-banner__description {
   margin: 0;
   max-width: 480px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--color-white-rgb), 0.82);
   font-size: 0.95rem;
   line-height: 1.8;
   text-align: left;
@@ -859,10 +881,10 @@ h2 {
   .swal-confirmBtn {
     height: 30px;
     width: 30px;
-    background-color: #00000000 !important;
+    background-color: transparent !important;
     background-image: url(/media/icons/icons8-close-50.png) !important;
     background-size: cover !important;
-    color: #ffffff;
+    color: var(--color-white);
     border: 0px;
     box-shadow: white;
   }
@@ -904,7 +926,7 @@ h2 {
   }
 
   #contacts p {
-    color: #a3a3a3;
+    color: var(--color-text-subtle);
     letter-spacing: 0px;
     text-align: center;
     margin: -1vh;
@@ -918,7 +940,7 @@ h2 {
     font-family: var(--font-primary);
     font-weight: bold;
     background-color: transparent;
-    color: #ffbb00;
+    color: var(--color-gold-bright);
     border: 0px;
   }
 
@@ -998,7 +1020,7 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    background: #000000;
+    background: var(--color-black);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -1061,7 +1083,7 @@ h2 {
 
   .director-banner__media::after,
   .director-banner--reverse .director-banner__media::after {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 58%, rgba(0, 0, 0, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(var(--color-black-rgb), 0.04) 58%, rgba(var(--color-black-rgb), 0.9) 100%);
   }
 
   .director-banner__content {

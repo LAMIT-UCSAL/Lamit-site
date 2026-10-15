@@ -3,6 +3,8 @@ import Grainient from './Grainient'
 function GrainientBackground() {
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+      {/* Mesmas cores de --color-cobalt e --color-amber (src/styles/style.css):
+          o shader WebGL precisa dos valores em hex, não lê variáveis CSS */}
       <Grainient
         color1="#0A3383"
         color2="#C17402"

@@ -64,11 +64,11 @@
   left: 0;
   top: 0;
   border-radius: var(--radius-md);
-  background-color: #0A3383;
+  background-color: var(--color-cobalt);
   padding: 4px 10px;
   font-size: 10px;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-white);
   opacity: 1;
   z-index: 3;
 }

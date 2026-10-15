@@ -90,7 +90,7 @@ export const communityCta = {
 export const partners = [
   { name: 'GDG Salvador', logo: '/media/partners/gdg-salvador.webp', tall: true },
   { name: 'GDG Lauro de Freitas', logo: '/media/partners/gdg-lauro-de-freitas.webp', tall: true },
-  { name: 'NXOS', logo: '/media/partners/nxos.webp' },
+  { name: 'NEXUPP', logo: '/media/partners/nexupp.webp' },
   { name: 'SCUPP', logo: '/media/partners/scupp.webp' },
   { name: 'Stem para as Minas', logo: '/media/partners/stem-para-as-minas.webp' },
   { name: 'Isso Não É Um Rádio', logo: '/media/partners/isso-nao-e-um-radio.webp' },
