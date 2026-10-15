@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
+// Por enquanto a aba SHOP leva à Lamit Store publicada no Netlify (trocar quando houver domínio próprio)
+const STORE_URL = 'https://lamitstore.netlify.app/'
+
 function Navbar({ currentPage }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const toggleRef = useRef(null)
@@ -10,7 +13,7 @@ function Navbar({ currentPage }) {
   const links = [
     { to: '/', label: 'HOME' },
     { to: '/diretoria', label: 'DIRETORIA' },
-    { to: '/shop', label: 'SHOP' },
+    { href: STORE_URL, label: 'SHOP' },
     { to: '/lamitrack', label: 'LAMITRACK' },
     { to: '/contato', label: 'CONTATO' },
   ]
@@ -74,7 +77,18 @@ function Navbar({ currentPage }) {
         className={`nav_home${isMenuOpen ? ' is-open' : ''}`}
         aria-label="Principal"
       >
-        {links.map(link => (
+        {links.map(link => (link.href ? (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${link.label} (abre a Lamit Store em nova aba)`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {link.label} <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
           <Link
             key={link.to}
             to={link.to}
@@ -83,7 +97,7 @@ function Navbar({ currentPage }) {
           >
             {link.label}
           </Link>
-        ))}
+        )))}
       </nav>
     </header>
   )
