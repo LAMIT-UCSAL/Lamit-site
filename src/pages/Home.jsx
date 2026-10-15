@@ -4,27 +4,22 @@ import AboutSection from '../components/home/AboutSection'
 import HackathonCarousel from '../components/home/HackathonCarousel'
 import EventsSection from '../components/home/EventsSection'
 import CommunityCTA from '../components/home/CommunityCTA'
+import HeroVideos from '../components/home/HeroVideos'
+import PartnersSection from '../components/home/PartnersSection'
+import { usePageMeta } from '../utils/usePageMeta'
 
 function Home() {
+  usePageMeta(
+    null,
+    'A LAMIT é a Liga Acadêmica de Maratonas, Inovação e Tecnologia da UCSal: hackathons, eventos e comunidade de tecnologia em Salvador.',
+  )
+
   return (
     <>
       <div className="banner1">
         <Navbar currentPage="HOME" />
 
-        <div className="banner-videos">
-          <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/videos/onboarding.mp4" type="video/mp4" />
-          </video>
-          <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/videos/gdg-salvador.MOV" type="video/mp4" />
-          </video>
-          <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/videos/lamit-redbull.mp4" type="video/mp4" />
-          </video>
-          <video autoPlay muted loop playsInline className="banner-video">
-            <source src="/media/videos/podcast.MOV" type="video/mp4" />
-          </video>
-        </div>
+        <HeroVideos />
 
         <Footer />
       </div>
@@ -38,6 +33,7 @@ function Home() {
         <AboutSection />
         <HackathonCarousel />
         <EventsSection />
+        <PartnersSection />
         <CommunityCTA />
       </div>
     </>

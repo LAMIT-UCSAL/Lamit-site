@@ -1,14 +1,49 @@
-@font-face {
-  font-family: BB Mono Semi Regular;
-  src: url('/fonts/bb-manual-mono-text-semi-regular.otf') format('opentype');
+/* Padrão do ecossistema LAMIT (mesmo da Lamit Store): Montserrat e cantos suavizados.
+   Caixa alta só em menu, etiquetas (kickers), datas e rótulos — ver bloco "Caixa alta" abaixo. */
+:root {
+  --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --radius-sm: 8px;    /* ticks, detalhes */
+  --radius-md: 12px;   /* botões, campos, setas */
+  --radius-lg: 20px;   /* fotos, cards, formulário */
+  --radius-pill: 999px;
 }
 
 * {
-  font-family: BB Mono Semi Regular;
-  text-transform: uppercase;
+  font-family: var(--font-primary);
   font-style: normal;
   box-shadow: none !important;
+}
 
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Caixa alta: só nos elementos de "sinalização", como na loja */
+.home-about__kicker,
+.home-about__pillar-label,
+.home-carousel__kicker,
+.home-events__kicker,
+.home-event__date,
+.home-event__role,
+.home-cta__kicker,
+.home-partners__kicker,
+.diretoria-kicker,
+.director-banner__index,
+.director-banner__label,
+#downElements div {
+  text-transform: uppercase;
+}
+
+.home-about__kicker,
+.home-carousel__kicker,
+.home-events__kicker,
+.home-cta__kicker,
+.home-partners__kicker,
+.director-banner__index {
+  font-weight: 700;
 }
 
 html,
@@ -23,6 +58,8 @@ body {
   text-align: center;
   line-height: normal;
   background-color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -45,6 +82,14 @@ a {
   width: 100%;
   position: relative;
   display: flow-root;
+}
+
+/* Fallback do Grainient sem WebGL: mesmas cores (cobalto/âmbar), estático */
+.grainient-container--fallback {
+  background:
+    radial-gradient(ellipse 60% 80% at 30% 40%, rgba(193, 116, 2, 0.85), transparent 70%),
+    radial-gradient(ellipse 50% 90% at 80% 70%, rgba(193, 116, 2, 0.55), transparent 70%),
+    #0A3383;
 }
 
 .grainient-container {
@@ -117,33 +162,26 @@ a {
   justify-content: center;
   align-items: center;
   color: #FFF;
-  font-family: BB Mono Semi Regular;
+  font-family: var(--font-primary);
   font-size: 1rem;
   font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  border-top: 2px solid #FFF;
-  border-bottom: 2px solid #FFF;
-  border-left: 0px;
-  border-right: 0px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
   background: #164194;
   width: 100%;
-  height: 65px;
+  height: 56px;
   flex-shrink: 0;
   color: #ffffff;
   transition: all 0.5s ease-in-out;
 }
 
-.btn-primary:hover {
-  border-top: 2px solid #FFF;
-  border-bottom: 2px solid #FFF;
-  border-left: 0px;
-  border-right: 0px;
+/* Laranja com texto escuro: branco sobre o laranja não passa no contraste AA (igual à loja) */
+.btn-primary:hover,
+.btn-primary:focus-visible {
   cursor: pointer;
   background: #e84b13;
-  color: #FFF;
-  font-weight: 900;
+  color: #0B0D12;
   transition: all 0.5s ease-in-out;
 }
 
@@ -166,8 +204,68 @@ a {
   width: 25%;
   height: 100%;
   object-fit: cover;
+  background: #000;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+/* Mobile: um vídeo por vez em tela cheia, trocando com fade (ver HeroVideos.jsx) */
+.banner-videos--stage {
+  position: relative;
+}
+
+.banner-videos--stage .banner-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.banner-videos--stage .banner-video.is-active {
+  opacity: 1;
+}
+
+.banner-ticks {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.banner-tick {
+  position: relative;
+  width: 28px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+/* Barrinha laranja que enche durante o clipe atual */
+.banner-tick::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #e84b13;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.banner-tick.is-active::after {
+  transform: scaleX(1);
+}
+
+.banner-tick.is-running::after {
+  animation: banner-tick-fill var(--clip-duration, 6000ms) linear;
+}
+
+@keyframes banner-tick-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 .nav-logo {
@@ -283,6 +381,7 @@ body::before {
 .photo_gallery img {
   width: 100%;
   height: 100%;
+  border-radius: var(--radius-lg);
 }
 
 * {
@@ -307,7 +406,7 @@ body::before {
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
 }
 
 label {
@@ -324,14 +423,14 @@ textarea {
   text-transform: none;
   width: 100%;
   color: #ffffff;
-  font-family: BB Mono Semi Regular;
+  font-family: var(--font-primary);
   padding: 1.2vh 12px;
   font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.06);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
@@ -356,14 +455,14 @@ textarea {
   height: 40px;
   padding: 0 24px;
   margin-top: 25px;
-  font-family: BB Mono Semi Regular;
+  font-family: var(--font-primary);
   font-weight: bold;
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: 0.4s ease;
 }
@@ -432,7 +531,7 @@ h2 {
   text-transform: lowercase;
   justify-content: flex-end;
   margin-top: 25px;
-  font-family: BB Mono Semi Regular;
+  font-family: var(--font-primary);
   font-weight: bold;
   background-color: transparent;
   color: #ffbb00;
@@ -500,6 +599,31 @@ h2 {
   width: 100%;
   margin: 0;
   padding: 110px 0 120px;
+}
+
+.not-found {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 140px 24px 120px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.not-found__body {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .diretoria-hero {
@@ -626,6 +750,26 @@ h2 {
   text-align: left;
 }
 
+/* Experiência profissional: no desktop aparece no tooltip do TiltedCard;
+   em touch/telas pequenas, onde não há hover, vira um selo fixo no texto */
+.director-banner__experience {
+  display: none;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  background: #0A3383;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (hover: none), (max-width: 640px) {
+  .director-banner__experience {
+    display: inline-block;
+  }
+}
+
 .director-banner__description {
   margin: 0;
   max-width: 480px;
@@ -703,13 +847,6 @@ h2 {
     overflow: hidden;
   }
 
-  .banner-video:not(:first-child) {
-    display: none;
-  }
-
-  .banner-video:first-child {
-    width: 100%;
-  }
 
   #titleContainer {
     position: relative;
@@ -745,7 +882,7 @@ h2 {
     justify-content: flex-end;
     margin-top: 1.5vh;
     margin-bottom: 2rem;
-    font-family: BB Mono Semi Regular;
+    font-family: var(--font-primary);
     font-weight: bold;
     background-color: transparent;
     color: #ffbb00;

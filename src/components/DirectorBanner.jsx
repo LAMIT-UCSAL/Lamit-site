@@ -22,6 +22,7 @@ function DirectorBanner({ index, label, name, description, experience, image, re
         <span className="director-banner__index">{index}</span>
         <p className="director-banner__label">{label}</p>
         <h2>{name}</h2>
+        {experience && <p className="director-banner__experience">{experience}</p>}
         <p className="director-banner__description">{description}</p>
       </div>
     </article>

@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import DirectorBanner from '../components/DirectorBanner'
 import GrainientBackground from '../components/GrainientBackground'
+import { usePageMeta } from '../utils/usePageMeta'
 
 const directors = [
   {
@@ -61,6 +62,8 @@ const directors = [
 ]
 
 function Diretoria() {
+  usePageMeta('Diretoria', 'Conheça quem lidera as frentes da LAMIT, a Liga Acadêmica de Maratonas, Inovação e Tecnologia da UCSal.')
+
   return (
     <div className="page-bg" style={{ background: 'none' }}>
       <GrainientBackground />

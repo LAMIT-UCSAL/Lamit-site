@@ -114,6 +114,12 @@ components:
 
 # Design System: LAMIT
 
+> **Atualização 2026-10-14: padronização com a Lamit Store.** O site passou a seguir a mesma tipografia e o mesmo formato da loja (`lamit-store`), e isto prevalece sobre as regras abaixo onde houver conflito:
+> - **Fonte:** Montserrat (Google Fonts, 400–800) no lugar da BB Manual Mono. Títulos em 800 com tracking -0.02em; texto suavizado (`-webkit-font-smoothing: antialiased`).
+> - **Caixa alta:** a regra global "All-Caps" foi removida. Caixa alta só em menu, kickers, rótulos, datas e índices; títulos e textos seguem a caixa do conteúdo.
+> - **Cantos suavizados:** tokens `--radius-sm` (8px), `--radius-md` (12px: botões, campos, setas), `--radius-lg` (20px: fotos, cards, formulário) e `--radius-pill`. O CTA "Acesse Nossos Links" segue de ponta a ponta, com pontas retas e sem as linhas brancas; no hover fica laranja com texto escuro (contraste AA).
+> - **Mantidos:** paleta, Grainient, tema escuro, laranja como sinal de interação, kickers em ouro e a proibição de sombras.
+
 ## Overview
 
 **Creative North Star: "The Hackathon Broadcast"**

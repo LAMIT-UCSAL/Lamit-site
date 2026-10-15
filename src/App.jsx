@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Diretoria from './pages/Diretoria'
 import Contato from './pages/Contato'
 import Shop from './pages/Shop'
+import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/diretoria" element={<Diretoria />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )

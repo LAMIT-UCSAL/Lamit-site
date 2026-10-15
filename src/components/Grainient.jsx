@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
 const hexToRgb = hex => {
@@ -118,16 +118,27 @@ const Grainient = ({
   className = ''
 }) => {
   const containerRef = useRef(null);
+  const [webglFailed, setWebglFailed] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
+    // Sem WebGL2 (navegador antigo, GPU bloqueada) o ogl lança erro: em vez de derrubar a
+    // página inteira, cai para o gradiente estático em CSS (.grainient-container--fallback)
+    let renderer;
+    try {
+      renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        antialias: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 2)
+      });
+      if (!renderer.gl) throw new Error('WebGL indisponível');
+    } catch (error) {
+      console.warn('Grainient: WebGL indisponível, usando gradiente estático.', error);
+      setWebglFailed(true);
+      return;
+    }
 
     const gl = renderer.gl;
     const canvas = gl.canvas;
@@ -203,6 +214,8 @@ const Grainient = ({
       } catch {
         // Ignore
       }
+      // Libera o contexto WebGL (ele é recriado a cada troca de página)
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [
     timeSpeed, colorBalance, warpStrength, warpFrequency,
@@ -212,7 +225,12 @@ const Grainient = ({
     centerX, centerY, zoom, color1, color2, color3
   ]);
 
-  return <div ref={containerRef} className={`grainient-container ${className}`.trim()} />;
+  return (
+    <div
+      ref={containerRef}
+      className={`grainient-container${webglFailed ? ' grainient-container--fallback' : ''} ${className}`.trim()}
+    />
+  );
 };
 
 export default Grainient;

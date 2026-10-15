@@ -5,8 +5,11 @@ import GrainientBackground from '../components/GrainientBackground'
 import { copiarTexto } from '../utils/swal'
 import { showError, showSuccess } from '../utils/swal'
 import { isEmailValid, isNameValid, isPhoneValid } from '../utils/validation'
+import { usePageMeta } from '../utils/usePageMeta'
 
 function Contato() {
+  usePageMeta('Contato', 'Fale com a LAMIT: envie uma mensagem pelo formulário ou escreva para contato.lamit@gmail.com.')
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

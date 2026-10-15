@@ -75,3 +75,20 @@ export const events = [
 export const communityCta = {
   href: 'https://chat.whatsapp.com/JKebVc0VWJpBCSHdorQ3b6',
 }
+
+// Parceiros (mesma lista do EVE Hub). Logos em public/media/partners/, em WebP com 140px de altura.
+// tall: logos verticais, que precisam de mais altura para ter o mesmo peso visual dos horizontais.
+export const partners = [
+  { name: 'GDG Salvador', logo: '/media/partners/gdg-salvador.webp', tall: true },
+  { name: 'GDG Lauro de Freitas', logo: '/media/partners/gdg-lauro-de-freitas.webp', tall: true },
+  { name: 'NXOS', logo: '/media/partners/nxos.webp' },
+  { name: 'SCUPP', logo: '/media/partners/scupp.webp' },
+  { name: 'Stem para as Minas', logo: '/media/partners/stem-para-as-minas.webp' },
+  { name: 'Isso Não É Um Rádio', logo: '/media/partners/isso-nao-e-um-radio.webp' },
+  { name: 'Red Bull', logo: '/media/partners/red-bull.webp' },
+  { name: 'Rocketseat', logo: '/media/partners/rocketseat.webp' },
+]
+
+export const partnershipCta = {
+  href: 'https://forms.gle/VQshwDE4bDSfuNWX8',
+}

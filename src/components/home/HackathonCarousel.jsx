@@ -93,7 +93,7 @@ function HackathonCarousel() {
       <div className="home-carousel__header">
         <p className="home-carousel__kicker">Hackathons</p>
         <h2 id="home-carousel-title" className="home-carousel__title">
-          Lamit em competição.
+          LAMIT em competição.
         </h2>
       </div>
 

@@ -6,7 +6,7 @@ function EventsSection() {
       <div className="home-events__header">
         <p className="home-events__kicker">Nossos eventos</p>
         <h2 id="home-events-title" className="home-events__title">
-          A Lamit também é palco.
+          A LAMIT também é palco.
         </h2>
       </div>
 
