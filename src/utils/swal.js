@@ -7,8 +7,7 @@ export function showCredits() {
     title: 'CREDITS',
     html: `
       <div>Web Development by Guilherme Mota & Gabriel Maia<br>
-      Web Designer by Guilherme Mota & Gabriel Maia<br>
-      Pictures by Mike FILLIPPOV</div>
+      Web Designer by Guilherme Mota & Gabriel Maia</div>
       <button type="button" class="swal-cookie-prefs">Preferências de cookies</button>
     `,
     didOpen: (popup) => {

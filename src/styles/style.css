@@ -315,6 +315,17 @@ a {
   z-index: 10;
 }
 
+/* Rodapé escondido até rolar um pouco (Footer.jsx) */
+#downElements > * {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#downElements.is-hidden > * {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .socialMedias a img {
   height: 24px;
   width: 24px;

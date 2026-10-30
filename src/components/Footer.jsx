@@ -27,11 +27,43 @@ function useOverDarkZone() {
   return onDark
 }
 
+// O rodapé só aparece depois de rolar um pouco: no primeiro quadro ele cobria botões do hero.
+// Em páginas curtas, que não têm o que rolar, ele aparece direto.
+const REVEAL_SCROLL_PX = 120
+
+function useRevealOnScroll() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const update = () => {
+      const root = document.documentElement
+      const canScroll = root.scrollHeight - window.innerHeight > REVEAL_SCROLL_PX
+      setVisible(!canScroll || window.scrollY > REVEAL_SCROLL_PX)
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    // A altura da página muda quando imagens e seções carregam
+    const observer = new ResizeObserver(update)
+    observer.observe(document.body)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+      observer.disconnect()
+    }
+  }, [])
+
+  return visible
+}
+
 function Footer() {
   const onDark = useOverDarkZone()
+  const visible = useRevealOnScroll()
+  const className = [onDark && 'is-on-dark', !visible && 'is-hidden'].filter(Boolean).join(' ')
 
   return (
-    <div id="downElements" className={onDark ? 'is-on-dark' : undefined}>
+    <div id="downElements" className={className || undefined}>
       <div> 2026 LAMIT </div>
       <button onClick={showCredits} id="creditsbtn">CREDITS</button>
       <nav className="socialMedias">
