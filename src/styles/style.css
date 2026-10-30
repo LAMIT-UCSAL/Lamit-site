@@ -157,7 +157,11 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  /* clip corta a sobra lateral sem virar área de rolagem: quem rola é a janela, não o <body>.
+     Com hidden, o body virava o rolador e a roda do mouse parava sobre elementos fixos
+     (menu, rodapé, aviso de cookies). hidden fica de reserva para navegadores sem clip */
   overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior: none;
   color: var(--color-fg);
   text-align: center;
@@ -668,9 +672,11 @@ textarea:focus {
   outline: none;
 }
 
+/* Cresce com o texto (altura ajustada em Contato.jsx), sem alça de redimensionar */
 textarea {
-  resize: vertical;
+  resize: none;
   min-height: 120px;
+  overflow: hidden;
 }
 
 
@@ -984,9 +990,10 @@ h1.contact-page__title {
   background: linear-gradient(180deg, transparent 0%, rgba(var(--color-bg-rgb), 0.2) 15%);
 }
 
+/* Último diretor: só o fundo escurecido some suave na base. Antes uma máscara esmaecia o bloco
+   inteiro, e no celular (texto embaixo da foto) a descrição ficava quase transparente */
 .director-banner:last-child {
-  mask-image: linear-gradient(180deg, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, black 85%, transparent 100%);
+  background: linear-gradient(180deg, rgba(var(--color-bg-rgb), 0.2) 85%, transparent 100%);
 }
 
 .director-banner {

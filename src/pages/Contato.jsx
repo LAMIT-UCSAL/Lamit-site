@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import GrainientBackground from '../components/GrainientBackground'
@@ -19,6 +19,15 @@ function Contato() {
   const [errors, setErrors] = useState({})
   const [isSending, setIsSending] = useState(false)
   const formRef = useRef(null)
+  const messageRef = useRef(null)
+
+  // O campo de mensagem cresce junto com o texto (sem alça de redimensionar)
+  useLayoutEffect(() => {
+    const field = messageRef.current
+    if (!field) return
+    field.style.height = 'auto'
+    field.style.height = `${field.scrollHeight + field.offsetHeight - field.clientHeight}px`
+  }, [formData.message])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -127,7 +136,7 @@ function Contato() {
           {fieldError('phone')}
 
           <label htmlFor="message">Mensagem</label>
-          <textarea {...fieldProps('message')}></textarea>
+          <textarea ref={messageRef} rows={4} {...fieldProps('message')}></textarea>
           {fieldError('message')}
 
           <p className="form-privacy">
