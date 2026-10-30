@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Vídeos do hero em qualidade original. Nada é baixado antes da hora (preload="none" + poster)
-// e eles só tocam enquanto o banner está visível na tela.
+// Vídeos do hero em qualidade original, sempre rodando em loop (sem pausar ao sair da tela).
 const VIDEOS = [
   { src: '/media/videos/onboarding.mp4', poster: '/media/videos/posters/onboarding.jpg' },
   { src: '/media/videos/gdg-salvador.MOV', poster: '/media/videos/posters/gdg-salvador.jpg' },
@@ -25,30 +24,6 @@ function useMediaQuery(query) {
   return matches
 }
 
-// Visível = dentro da viewport e com a aba em primeiro plano
-function useIsVisible(ref) {
-  const [inView, setInView] = useState(false)
-  const [pageVisible, setPageVisible] = useState(() => !document.hidden)
-
-  useEffect(() => {
-    const element = ref.current
-    if (!element) return undefined
-
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.15 })
-    observer.observe(element)
-
-    const onVisibility = () => setPageVisible(!document.hidden)
-    document.addEventListener('visibilitychange', onVisibility)
-
-    return () => {
-      observer.disconnect()
-      document.removeEventListener('visibilitychange', onVisibility)
-    }
-  }, [ref])
-
-  return inView && pageVisible
-}
-
 function playSafely(video) {
   if (!video) return
   const promise = video.play()
@@ -57,34 +32,30 @@ function playSafely(video) {
 }
 
 function HeroVideos() {
-  const containerRef = useRef(null)
   const videoRefs = useRef([])
   const isMobile = useMediaQuery(MOBILE_QUERY)
-  const isVisible = useIsVisible(containerRef)
   const [active, setActive] = useState(0)
 
-  // Tocar/pausar conforme a visibilidade (no mobile, só o vídeo ativo toca)
+  // Desktop: os 4 vídeos tocam juntos. Mobile: só o vídeo ativo toca (os outros ficam invisíveis)
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (!video) return
-      const shouldPlay = isVisible && (!isMobile || index === active)
-      if (shouldPlay) playSafely(video)
+      if (!isMobile || index === active) playSafely(video)
       else video.pause()
     })
-  }, [isVisible, isMobile, active])
+  }, [isMobile, active])
 
-  // Mobile: troca de vídeo a cada CLIP_DURATION_MS enquanto o banner está visível
+  // Mobile: troca de vídeo a cada CLIP_DURATION_MS
   useEffect(() => {
-    if (!isMobile || !isVisible) return undefined
+    if (!isMobile) return undefined
     const timer = setTimeout(() => setActive((current) => (current + 1) % VIDEOS.length), CLIP_DURATION_MS)
     return () => clearTimeout(timer)
-  }, [isMobile, isVisible, active])
+  }, [isMobile, active])
 
   const next = (active + 1) % VIDEOS.length
 
   return (
     <div
-      ref={containerRef}
       className={`banner-videos${isMobile ? ' banner-videos--stage' : ''}`}
       aria-hidden="true"
     >
@@ -100,6 +71,7 @@ function HeroVideos() {
             src={video.src}
             poster={video.poster}
             preload={preload}
+            autoPlay={!isMobile || isActive}
             muted
             loop
             playsInline
@@ -112,7 +84,7 @@ function HeroVideos() {
           {VIDEOS.map((video, index) => (
             <span
               key={video.src}
-              className={`banner-tick${index === active ? ' is-active' : ''}${index === active && isVisible ? ' is-running' : ''}`}
+              className={`banner-tick${index === active ? ' is-active' : ''}${index === active ? ' is-running' : ''}`}
               style={{ '--clip-duration': `${CLIP_DURATION_MS}ms` }}
             />
           ))}
