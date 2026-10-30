@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lamitsite.com.br/sitemap.xml

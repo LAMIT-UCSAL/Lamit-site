@@ -1,6 +1,8 @@
 {
   "name": "lamit-site",
   "compatibility_date": "2026-10-01",
+  // Site servido só pelo domínio oficial (lamitsite.com.br); sem o endereço *.workers.dev
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"

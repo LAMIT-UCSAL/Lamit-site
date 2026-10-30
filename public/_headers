@@ -1,0 +1,11 @@
+# Cache no navegador (Cloudflare Workers Static Assets)
+# JS e CSS do build têm hash no nome: podem ficar em cache para sempre
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fotos, vídeos e marcas: 30 dias (trocar o nome do arquivo ao substituir uma mídia)
+/media/*
+  Cache-Control: public, max-age=2592000
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

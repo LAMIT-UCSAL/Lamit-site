@@ -8,8 +8,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-// Endereço público do site (trocar quando houver domínio próprio)
-export const SITE_URL = 'https://lamit-site.monjogui.workers.dev'
+// Endereço público do site (domínio oficial)
+export const SITE_URL = 'https://lamitsite.com.br'
 
 const PAGES = {
   diretoria: {
