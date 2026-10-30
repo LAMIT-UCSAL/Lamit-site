@@ -969,13 +969,10 @@ h3.home-partners__cta-title {
     max-height: 48px;
   }
 
-  .home-partners__card--tall {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
+  /* No celular os GDGs ficavam bem maiores que os outros (77px x 48px): só um pouco mais altos,
+     para os logos verticais não ficarem miúdos */
   .home-partners__card--tall img {
-    max-height: 100%;
+    max-height: 56px;
   }
 
   .home-partners__cta {
