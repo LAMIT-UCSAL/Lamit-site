@@ -1302,3 +1302,94 @@ h1.contact-page__title {
     font-size: 0.7rem;
   }
 }
+/* Aviso de cookies (LGPD) — fixo no rodapé, acima dos ícones e créditos */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 10000;
+  width: min(560px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(var(--color-fg-rgb), 0.18);
+  border-radius: var(--radius-lg);
+  background: rgba(var(--color-bg-rgb), 0.92);
+  backdrop-filter: blur(12px);
+  color: var(--color-fg);
+  font-family: var(--font-primary);
+  box-shadow: 0 12px 40px rgba(var(--color-black-rgb), 0.35);
+}
+
+.cookie-banner__text {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cookie-banner__btn {
+  padding: 9px 16px;
+  border: 1px solid rgba(var(--color-fg-rgb), 0.35);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-fg);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cookie-banner__btn:hover,
+.cookie-banner__btn:focus-visible {
+  border-color: var(--color-signal-orange);
+}
+
+.cookie-banner__btn--accept {
+  border-color: var(--color-signal-blue);
+  background: var(--color-signal-blue);
+  color: var(--color-white);
+}
+
+.cookie-banner__btn--accept:hover,
+.cookie-banner__btn--accept:focus-visible {
+  background: var(--color-signal-orange);
+}
+
+/* Link "Preferências de cookies" dentro dos créditos */
+.swal-cookie-prefs {
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-subtle);
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.swal-cookie-prefs:hover {
+  color: var(--color-white);
+}
+
+@media (max-width: 560px) {
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cookie-banner__actions .cookie-banner__btn {
+    flex: 1;
+  }
+}

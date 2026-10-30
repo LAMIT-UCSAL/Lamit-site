@@ -8,6 +8,7 @@ import Shop from './pages/Shop'
 import Lamitrack from './pages/Lamitrack'
 import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
+import CookieBanner from './components/CookieBanner'
 
 // Aplica o tema escolhido no <html>
 function ThemeSync() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/lamitrack" element={<Lamitrack />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CookieBanner />
     </>
   )
 }

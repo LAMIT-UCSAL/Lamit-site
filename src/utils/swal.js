@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { openCookieBanner } from './consent'
 
 export function showCredits() {
   Swal.fire({
@@ -8,7 +9,14 @@ export function showCredits() {
       <div>Web Development by Guilherme Mota & Gabriel Maia<br>
       Web Designer by Guilherme Mota & Gabriel Maia<br>
       Pictures by Mike FILLIPPOV</div>
+      <button type="button" class="swal-cookie-prefs">Preferências de cookies</button>
     `,
+    didOpen: (popup) => {
+      popup.querySelector('.swal-cookie-prefs')?.addEventListener('click', () => {
+        Swal.close()
+        openCookieBanner()
+      })
+    },
     color: '#fff',
     background: 'black',
     backdrop: 'black',
